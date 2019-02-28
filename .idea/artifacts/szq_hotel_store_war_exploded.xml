@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="szq-hotel-store:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/szq_hotel_store_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/target/szq-hotel-store</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -22,6 +22,7 @@
           <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.1" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
           <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-dysmsapi:1.1.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.0.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:3.2.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.2.9.RELEASE" />
@@ -127,6 +128,9 @@
           <element id="library" level="project" name="Maven: org.apache.axis:axis:1.4" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.2.2" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/szq-hotel-store/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="szq-hotel-store/web/Web" />
     </root>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="szq-hotel-store:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="szq-hotel-store.war">
+      <element id="artifact" artifact-name="szq-hotel-store:war exploded" />
+    </root>
+  </artifact>
+</component>

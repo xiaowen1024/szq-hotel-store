@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: com.taobao.diamond:diamond-client-sun:2.0.5.4.taocode-SNAPSHOT">
     <CLASSES>
-      <root url="jar://E:/ProgrameFiles/mavenrepo/com/taobao/diamond/diamond-client-sun/2.0.5.4.taocode-SNAPSHOT/diamond-client-sun-2.0.5.4.taocode-SNAPSHOT.jar!/" />
+      <root url="jar://D:/ProgrameFiles/mavenrepo/com/taobao/diamond/diamond-client-sun/2.0.5.4.taocode-SNAPSHOT/diamond-client-sun-2.0.5.4.taocode-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/ProgrameFiles/mavenrepo/com/taobao/diamond/diamond-client-sun/2.0.5.4.taocode-SNAPSHOT/diamond-client-sun-2.0.5.4.taocode-SNAPSHOT-javadoc.jar!/" />
+      <root url="jar://D:/ProgrameFiles/mavenrepo/com/taobao/diamond/diamond-client-sun/2.0.5.4.taocode-SNAPSHOT/diamond-client-sun-2.0.5.4.taocode-SNAPSHOT-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/ProgrameFiles/mavenrepo/com/taobao/diamond/diamond-client-sun/2.0.5.4.taocode-SNAPSHOT/diamond-client-sun-2.0.5.4.taocode-SNAPSHOT-sources.jar!/" />
+      <root url="jar://D:/ProgrameFiles/mavenrepo/com/taobao/diamond/diamond-client-sun/2.0.5.4.taocode-SNAPSHOT/diamond-client-sun-2.0.5.4.taocode-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
