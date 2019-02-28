@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.PolicyInterpreTationDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryPolicyInterpreTationCount" resultType="int">
+        SELECT COUNT(id) FROM gh_policy_interpreTation
+    </select>
+
+    <select id="queryPolicyInterpreTationList" parameterType="map" resultType="com.szq.store.entity.bo.PolicyInterpreTationBo">
+        SELECT * FROM gh_policy_interpreTation WHERE 1 = 1
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        ORDER BY create_time DESC
+        <include refid="limit"/>
+    </select>
+
+    <select id="queryPolicyInterpreTationById" parameterType="int" resultType="com.szq.store.entity.bo.PolicyInterpreTationBo">
+        SELECT * FROM gh_policy_interpreTation WHERE id = #{newsId}
+    </select>
+
+    <delete id="deletePolicyInterpreTation" parameterType="int">
+        DELETE FROM gh_policy_interpreTation WHERE id = #{newsId}
+    </delete>
+
+    <insert id="addPolicyInterpreTation" parameterType="com.szq.store.entity.bo.PolicyInterpreTationBo">
+        INSERT INTO gh_policy_interpreTation SET title = #{title},english_title = #{englishTitle}
+        img_url = #{imgUrl},source = #{source},create_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser}
+
+    </insert>
+
+    <update id="updatePolicyInterpreTation" parameterType="com.szq.store.entity.bo.PolicyInterpreTationBo">
+        UPDATE gh_policy_interpreTation  SET title = #{title},english_title = #{englishTitle}
+        img_url = #{imgUrl},source = #{source},update_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser} WHERE id = #{id}
+    </update>
+</mapper>

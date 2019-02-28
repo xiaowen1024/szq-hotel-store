@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.GoodsTypeDao">
+
+    <insert id="addGoodType" parameterType="com.szq.store.entity.mallBo.GoodTypeBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into mall_goods_type SET  name = #{name},,create_time = NOW()
+        ,create_user = #{createUser}
+    </insert>
+    <update id="updateGoodType" parameterType="com.szq.store.entity.mallBo.GoodTypeBo">
+        update mall_goods_type set name = #{name}
+        ,update_time = now() where id = #{id}
+    </update>
+    <select id="queryGoodType" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodTypeBo">
+        select * from mall_goods_type
+    </select>
+    <select id="queryGoodTypeById" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodTypeBo">
+        select * from mall_goods_type WHERE id=#{id}
+    </select>
+    <select id="queryGoodTypeByPid" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodTypeBo">
+        select * from mall_goods_type WHERE pid=#{pid}
+    </select>
+
+    <delete id="deleteGoodType" parameterType="int">
+        delete from mall_goods_type where id = #{id}
+    </delete>
+    <select id="queryGoodTypeFirstById" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodTypeBo">
+         select g.*from mall_goods_type g join mall_goods p on g.id=p.leave_id WHERE p.id=#{id}
+    </select>
+    <select id="queryGoodTypeSecondById" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodTypeBo">
+        select g.*from mall_goods_type g join mall_goods p on g.id=p.goods_type_id WHERE p.id=#{id}
+    </select>
+    <select id="queryTypeById" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodTypeBo">
+        select * from mall_goods_type WHERE pid=0
+            </select>
+
+</mapper>

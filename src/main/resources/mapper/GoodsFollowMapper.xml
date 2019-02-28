@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.GoodsFollowDao">
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <insert id="addGoodsFollow" parameterType="com.szq.store.entity.mallBo.GoodsFollowBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into mall_goods_follow SET  user_id = #{userId},create_time = NOW()
+        ,sku=#{sku}
+    </insert>
+    <select id="queryMyGoodsFollow" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsFollowBo">
+        select *from mall_goods t,mall_goods_follow b where t.id =b.goods_id and b.user_id =#{id}
+    </select>
+    <select id="queryGoodsFollow" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsFollowBo">
+        select * from mall_goods_follow WHERE id=#{id}
+    </select>
+
+    <delete id="deleteGoodsFollow" parameterType="int">
+        delete from mall_goods_follow where id = #{id}
+    </delete>
+    <select id="queryUserFollow" parameterType="map" resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+        SELECT p.stock, p.sku,p.price,p.preferential_end_time ,p.preferential_price,g.*
+        FROM
+        mall_goods g
+        left JOIN
+        mall_price_and_specification p ON g.id = p.goods_id
+        LEFT JOIN
+        mall_goods_follow m  ON m.sku=p.sku
+        WHERE
+        m.user_id=#{userId}
+        ORDER by create_time DESC
+        <include refid="limit"/>
+    </select>
+    <select id="queryUserFollowCount" parameterType="int" resultType="int">
+        SELECT count(p.sku)
+        FROM
+        mall_goods g
+        left JOIN
+        mall_price_and_specification p ON g.id = p.goods_id
+        LEFT JOIN
+        mall_goods_follow m  ON m.sku=p.sku
+        WHERE
+        m.user_id=#{id}
+    </select>
+
+    <select id="queryUserFollowSku" parameterType="int" resultType="int">
+        select sku from mall_goods_follow  where user_id =#{id}
+    </select>
+    <select id="queryGoodsFollow1" parameterType="com.szq.store.entity.mallBo.GoodsFollowBo" resultType="com.szq.store.entity.mallBo.GoodsFollowBo">
+        select * from mall_goods_follow WHERE sku=#{sku}  AND  user_id=#{userId}
+
+    </select>
+    <delete id="deleteFollow" parameterType="com.szq.store.entity.mallBo.GoodsFollowBo">
+        delete from mall_goods_follow where sku=#{sku}  AND  user_id=#{userId}
+    </delete>
+</mapper>

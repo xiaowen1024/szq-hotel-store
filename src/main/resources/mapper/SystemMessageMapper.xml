@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 【用户】 -->
+<mapper namespace="com.szq.store.dao.SystemMessageDao">
+
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="getMessageCount" resultType="int" parameterType="int">
+        select count(id) from gh_system_message WHERE user_id = #{userId}
+    </select>
+
+    <select id="getUnReadCount" resultType="int" parameterType="int">
+        select count(id) from gh_system_message WHERE user_id = #{userId} AND status = 0
+    </select>
+
+    <select id="getMessageList" resultType="map" parameterType="map">
+        select * from gh_system_message WHERE user_id = #{userId} order by create_time
+        <include refid="limit"/>
+    </select>
+
+    <insert id="addMessage" parameterType="map">
+        insert into gh_system_message set title = #{title},message=#{message},create_time= now(),status=0,user_id=#{userId}
+    </insert>
+    <update id="setMessageStatus" parameterType="int">
+        update gh_system_message set status = 1 where user_id=#{userId}
+    </update>
+
+</mapper>

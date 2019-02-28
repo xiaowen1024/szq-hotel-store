@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.mallDao.QueryGoodsListDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+    <select id="queryGoodsCount"  resultType="int">
+        SELECT COUNT(DISTINCT g.id) FROM mall_goods g
+        LEFT JOIN mall_price_and_specification p ON g.id=p.goods_id
+        LEFT JOIN mall_brand m ON m.id=g.brand_id
+        WHERE 1=1
+        AND
+        (g.`name` LIKE '%${query}%' OR m.`name`LIKE '%${query}%')
+        <if test="brandId!=null">
+            AND
+            g.brand_id =#{brandId}
+        </if>
+        <if test="weightStatu==1">
+            AND  g.weight &lt; 1
+        </if>
+        <if test="weightStatu==2">
+            AND   g.weight &lt; 5 AND g.weight &gt;1
+        </if>
+        <if test="weightStatu==3">
+            AND  g.weight  &gt;5
+        </if>
+    </select>
+    <select id="QueryGoodsList" parameterType="map" resultType="com.szq.store.entity.mallBo.GoodsListBo">
+        SELECT g.*,p.price ,p.sku,p.preferential_end_time ,p.preferential_price FROM mall_goods g
+        LEFT JOIN mall_price_and_specification p ON g.id=p.goods_id
+        LEFT JOIN mall_brand m ON m.id=g.brand_id
+        WHERE 1=1
+        AND
+        (g.`name` LIKE '%${query}%' OR m.`name`LIKE '%${query}%')
+        <if test="brandId!=null">
+            AND
+            g.brand_id =#{brandId}
+        </if>
+        <if test="weightStatu==1">
+            AND  g.weight &lt; 1
+        </if>
+        <if test="weightStatu==2">
+            AND   g.weight &lt; 5 AND g.weight &gt;1
+        </if>
+        <if test="weightStatu==3">
+            AND  g.weight  &gt;5
+        </if>
+        group by g.id
+        <if test="sortStatu==1">
+            ORDER BY p.price ASC
+        </if>
+        <if test="sortStatu==2">
+            ORDER BY p.price DESC
+        </if>
+        <if test="sortStatu==3">
+            ORDER  BY p.sale_count ASC
+        </if>
+        <if test="sortStatu==4">
+            ORDER  BY p.sale_count DESC
+        </if>
+        <if test="sortStatu==5">
+            ORDER BY g.follow_count ASC
+        </if>
+        <if test="sortStatu==6">
+            ORDER BY g.follow_count DESC
+        </if>
+        <if test="sortStatu==7">
+            ORDER BY g.create_time ASC
+        </if>
+        <if test="sortStatu==8">
+            ORDER BY g.create_time DESC
+        </if>
+        <include refid="limit"/>
+    </select>
+
+</mapper>

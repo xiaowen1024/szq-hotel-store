@@ -1,0 +1,552 @@
+@media only screen and (max-width: 1400px) {
+				@font-face {
+			  font-family: 'iconfont';  /* project id 754425 */
+			  src: url('//at.alicdn.com/t/font_754425_s8gopop040q.eot');
+			  src: url('//at.alicdn.com/t/font_754425_s8gopop040q.eot?#iefix') format('embedded-opentype'),
+			  url('//at.alicdn.com/t/font_754425_s8gopop040q.woff') format('woff'),
+			  url('//at.alicdn.com/t/font_754425_s8gopop040q.ttf') format('truetype'),
+			  url('//at.alicdn.com/t/font_754425_s8gopop040q.svg#iconfont') format('svg');
+			}
+			.header.news {
+				background: #4F4F4F;
+				height: 450px;
+			}
+			section{
+				width: 100%;background: #ECEEEF;
+				padding-bottom: 95px;
+			}
+			.line{
+				width: 65px; height: 2px; background-color: #D3A359; margin: 10px auto;
+			}
+			.invest_wrapp{
+				width: 1024px;
+				height: 324.26px;
+				background: #D2A355;
+				border-radius: 5px;
+				position: relative;
+			}
+			.invest_waring{
+				position: absolute;
+				width: 558px;
+				height: 140px;
+				top: 217.6px;
+				left: 12.8px;
+				border-radius: 4.2px;
+				background: white;
+				display:table-cell;vertical-align:middle;
+			}
+			#invest_waring_p{
+				font-size: 12px;
+				line-height: 17px;
+				letter-spacing: 0px;
+				color: #999999;
+				padding-left: 26.45px;
+				padding-top: 93.86px;
+			}
+			.invest_wrapp .iw_title {
+			    width: 339.62px;
+			    height: 28.16px;
+			    font-family: MicrosoftYaHei;
+			    font-size: 26px;
+			    padding-top: 28.16px;
+			    padding-left: 42.66px;
+			    letter-spacing: 0px;
+			    color: #ffffff;
+			}
+			.invest_wrapp p:nth-child(2) {
+				font-family: MicrosoftYaHei;
+				font-size: 24px;
+				letter-spacing: 0px;
+				color: #ffffff;
+				padding-left: 85.33px;
+				padding-top: 64px;
+			}	
+			.invest_wrapp p:nth-child(3) {
+				font-family: MicrosoftYaHei;
+				font-size: 12px;
+				letter-spacing: 0px;
+				color: #ffffff;
+				padding-left: 85.33px;
+				padding-top: 12.8px;
+			}						
+			.invest_wrapp p span:nth-child(2) {
+				padding-left: 30px;
+			}	
+			.invest_wrapp p span:nth-child(3) {
+				padding-left: 102.4px;
+			}	
+			.invest_start{
+				position: absolute;
+				width: 431.78px;
+				height: 336.21px;
+				top: 21.33px;
+				right: 12.8px;
+				border-radius: 4.26px;
+				background: white;
+			}	
+			.invest_start .login_p{
+				font-family: PingFang-SC-Regular;
+				font-size: 18px;
+				letter-spacing: 0px;
+				color: #999;
+				padding: 45.22px 0px 0 166.4px;
+			}	
+			.invest_start .login_p span{
+				color: #3558cc;
+				border-bottom: 1px solid #3558cc;
+				cursor: pointer;
+			}	
+			.reduce,.plus{
+				width: 38.4px;
+				height: 38.4px;
+				background: #cccccc;
+				border-radius: 3px;
+				color: whitesmoke;
+				font-size: 17px;
+				vertical-align: top;
+			}	
+			.reduce{
+				margin-left: 58.02px;
+			}
+			.btn_allow{
+				background: #d3a359;
+			}
+			.btn.btn_allow:active{
+				position: relative;
+				top: 1px;
+				right: 1px;
+			}
+			
+			.invest_start input{
+				width: 240.64px;
+				height: 25.6px;
+				line-height: 34.13px;
+				padding: 4.26px;
+				font-size: 18px;
+				color: #999;
+				box-shadow: 0px 0px 4px 0px 
+				rgba(194, 152, 93, 0.82);
+				border-radius: 4px;
+				border: solid 1px #d3a359;
+			}
+			
+			.invest_start .unit{
+				position: absolute;
+				font-size: 15.36px;
+				letter-spacing: 1px;
+				color: #999999;
+				right: 93.86px;
+				top: 130.17px;
+			}
+			
+			.yuyue {
+				margin-left: 59.73px;
+				width: 332.8px;
+				height: 58px;
+				background-image: linear-gradient(0deg, 
+					#b28247 0%, 
+					#bc9055 50%, 
+					#c69e62 100%), 
+				linear-gradient(
+					#d3a359, 
+					#d3a359);
+				background-blend-mode: normal, 
+					normal;
+				border-radius: 6px;
+				
+				
+					font-family: MicrosoftYaHei;
+				font-size: 20px;
+				letter-spacing: 1px;
+				color: #ffffff;
+			}
+			.invest_tip{
+					font-family: MicrosoftYaHei;
+					font-size: 12px;
+					letter-spacing: 0px;
+					color: #999999;
+					padding: 12.8px 0 25.6px 111px;
+			}
+			.invest_tip span{
+				padding-left: 21.33px;
+			}
+			
+			.content{
+				margin-top: 100px;
+				padding: 35px 0 75px 0;
+				width: 1024px;
+				background: white;
+				position: relative;
+			}
+			.content_title{
+				font-family: MicrosoftYaHei;
+				font-size: 30px;
+				letter-spacing: 0px;
+				color: #d3a359;
+				text-align: center;
+			}
+			.product-introduction {
+				font-family: MicrosoftYaHei;
+				font-size: 15px;
+				font-weight: normal;
+				font-stretch: normal;
+				letter-spacing: 2px;
+				color: #d3a359;
+				text-align: center;
+				padding-top: 15px;
+			}
+			.product_title{
+				font-family: MicrosoftYaHei;
+				font-size: 18px;
+				letter-spacing: 1px;
+				color: #333333;
+				float: left;
+				line-height: 18px;
+			}
+			.product_title_lump{
+			    width: 7px;
+				height: 18px;
+				background: #d3a359;
+				float: left;
+				margin-right: 7px;
+				margin-left: 70px;
+			}
+			.produce_title_wrapp{
+				margin-top: 60px;
+				padding-bottom: 50px;
+			}
+			.produce_sub_title{
+				margin-left: 70px;
+				line-height: 50px;
+				font-size: 14px;
+				color: #333333;
+				
+			}
+			.produce_sub_desc{
+				font-size: 14px;
+				line-height: 45px;
+				letter-spacing: 0px;
+				color: #666666;
+				padding-left: 140px;
+			}
+			.alone_one{
+				padding-left: 200px;
+			}
+			.alone_two{
+				padding-left: 210px;
+			}
+			.alone_three{
+				padding-left: 125px;
+			}
+			.alone_four{
+				padding-left: 270px;
+			}			
+			.item{
+				height: 50px; border-bottom: 1px solid #eee;
+			}
+			.item_alone{
+				height: 50px;
+			}			
+			.advantage{
+				height: 75px;
+			}
+			.advantage_left{
+				width: 180px;height: 75px;float: left;
+			}
+			.advantage_right{
+				width: 750px; height: 75px;float: left;padding-left: 90px;
+			}
+			.adv_sub_title{
+				line-height: 75px;font-size: 14px;padding-left: 70px;
+			}
+			.adv_double_desc{
+				font-size: 14px;line-height: 38px;color: #666666;
+			}
+			.alone{
+				line-height: 75px
+			}
+			table,table tr th, table tr td { border:1px solid #f9f9f9; }
+			table { border-collapse: collapse;margin-left: 100px; width: 880px;}
+			td,th{
+				vertical-align: middle;
+				text-align: center;
+				padding: 15px 0;
+			}
+}
+@media only screen and (min-width: 1400px) {
+				@font-face {
+			  font-family: 'iconfont';  /* project id 754425 */
+			  src: url('//at.alicdn.com/t/font_754425_s8gopop040q.eot');
+			  src: url('//at.alicdn.com/t/font_754425_s8gopop040q.eot?#iefix') format('embedded-opentype'),
+			  url('//at.alicdn.com/t/font_754425_s8gopop040q.woff') format('woff'),
+			  url('//at.alicdn.com/t/font_754425_s8gopop040q.ttf') format('truetype'),
+			  url('//at.alicdn.com/t/font_754425_s8gopop040q.svg#iconfont') format('svg');
+			}
+			.header.news {
+				background: #4F4F4F;
+				height: 450px;
+			}
+			section{
+				width: 100%;background: #ECEEEF;
+				padding-bottom: 95px;
+			}
+			.line{
+				width: 65px; height: 2px; background-color: #D3A359; margin: 10px auto;
+			}
+			.invest_wrapp{
+				width: 1200px;
+				height: 380px;
+				background: #D2A355;
+				border-radius: 5px;
+				position: relative;
+			}
+			.invest_waring{
+				position: absolute;
+				width: 654px;
+				height: 164px;
+				top: 255px;
+				left: 15px;
+				border-radius: 5px;
+				background: white;
+			}
+			#invest_waring_p{
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: 0px;
+				color: #999999;
+				padding-left: 31px;
+				padding-top: 110px;
+			}
+			.invest_wrapp .iw_title {
+				
+				width: 398px;
+				height: 33px;
+				font-family: MicrosoftYaHei;
+				font-size: 26px;
+				padding-top: 33px;
+				padding-left: 50px;
+				letter-spacing: 0px;
+				color: #ffffff;
+
+			}
+			.invest_wrapp p:nth-child(2) {
+				font-family: MicrosoftYaHei;
+				font-size: 24px;
+				letter-spacing: 0px;
+				color: #ffffff;
+				padding-left: 100px;
+				padding-top: 75px;
+			}	
+			.invest_wrapp p:nth-child(3) {
+				font-family: MicrosoftYaHei;
+				font-size: 14px;
+				letter-spacing: 0px;
+				color: #ffffff;
+				padding-left: 100px;
+				padding-top: 15px;
+			}						
+			.invest_wrapp p span:nth-child(2) {
+				padding-left: 40px;
+			}	
+			.invest_wrapp p span:nth-child(3) {
+				padding-left: 120px;
+			}	
+			.invest_start{
+				position: absolute;
+				width: 506px;
+				height: 394px;
+				top: 25px;
+				right: 15px;
+				border-radius: 5px;
+				background: white;
+			}	
+			.invest_start .login_p{
+				font-family: PingFang-SC-Regular;
+				font-size: 18px;
+				letter-spacing: 0px;
+				color: #999;
+				padding: 53px 0px 0 195px;
+			}	
+			.invest_start .login_p span{
+				color: #3558cc;
+				border-bottom: 1px solid #3558cc;
+				cursor: pointer;
+			}	
+			.reduce,.plus{
+				width: 45px;
+				height: 45px;
+				background: #cccccc;
+				border-radius: 3px;
+				color: whitesmoke;
+				font-size: 20px;
+				vertical-align: top;
+			}	
+			.reduce{
+				margin-left: 68px;
+			}
+			.btn_allow{
+				background: #d3a359;
+			}
+			.btn.btn_allow:active{
+				position: relative;
+				top: 1px;
+				right: 1px;
+			}
+			
+			.invest_start input{
+				width: 282px;
+				height: 30px;
+				line-height: 40px;
+				padding: 5px;
+				font-size: 18px;
+				color: #999;
+				box-shadow: 0px 0px 4px 0px 
+				rgba(194, 152, 93, 0.82);
+				border-radius: 4px;
+				border: solid 1px #d3a359;
+			}
+			
+			.invest_start .unit{
+				position: absolute;
+				font-size: 18px;
+				letter-spacing: 1px;
+				color: #999999;
+				right: 110px;
+				top: 142px;
+			}
+			
+			.yuyue {
+				margin-left: 70px;
+				width: 390px;
+				height: 68px;
+				background-image: linear-gradient(0deg, 
+					#b28247 0%, 
+					#bc9055 50%, 
+					#c69e62 100%), 
+				linear-gradient(
+					#d3a359, 
+					#d3a359);
+				background-blend-mode: normal, 
+					normal;
+				border-radius: 6px;
+				
+				
+					font-family: MicrosoftYaHei;
+				font-size: 20px;
+				letter-spacing: 1px;
+				color: #ffffff;
+			}
+			.invest_tip{
+					font-family: MicrosoftYaHei;
+					font-size: 12px;
+					letter-spacing: 0px;
+					color: #999999;
+					padding: 15px 0 30px 150px;
+			}
+			.invest_tip span{
+				padding-left: 25px;
+			}
+			
+			.content{
+				margin-top: 100px;
+				padding: 35px 0 75px 0;
+				width: 1200px;
+				background: white;
+				position: relative;
+			}
+			.content_title{
+				font-family: MicrosoftYaHei;
+				font-size: 30px;
+				letter-spacing: 0px;
+				color: #d3a359;
+				text-align: center;
+			}
+			.product-introduction {
+				font-family: MicrosoftYaHei;
+				font-size: 15px;
+				font-weight: normal;
+				font-stretch: normal;
+				letter-spacing: 2px;
+				color: #d3a359;
+				text-align: center;
+				padding-top: 15px;
+			}
+			.product_title{
+				font-family: MicrosoftYaHei;
+				font-size: 18px;
+				letter-spacing: 1px;
+				color: #333333;
+				float: left;
+				line-height: 18px;
+			}
+			.product_title_lump{
+			    width: 7px;
+				height: 18px;
+				background: #d3a359;
+				float: left;
+				margin-right: 7px;
+				margin-left: 70px;
+			}
+			.produce_title_wrapp{
+				margin-top: 60px;
+				padding-bottom: 50px;
+			}
+			.produce_sub_title{
+				margin-left: 70px;
+				line-height: 50px;
+				font-size: 14px;
+				color: #333333;
+				
+			}
+			.produce_sub_desc{
+				font-size: 14px;
+				line-height: 45px;
+				letter-spacing: 0px;
+				color: #666666;
+				padding-left: 140px;
+			}	
+			.alone_one{
+				padding-left: 200px;
+			}
+			.alone_two{
+				padding-left: 210px;
+			}
+			.alone_three{
+				padding-left: 125px;
+			}
+			.alone_four{
+				padding-left: 270px;
+			}				
+			
+			.item{
+				height: 50px; border-bottom: 1px solid #eee;
+			}
+			.item_alone{
+				height: 50px;
+			}			
+			.advantage{
+				height: 75px;
+			}
+			.advantage_left{
+				width: 180px;height: 75px;float: left;
+			}
+			.advantage_right{
+				width: 770px; height: 75px;float: left;padding-left: 90px;
+			}
+			.adv_sub_title{
+				line-height: 75px;font-size: 14px;padding-left: 70px;
+			}
+			.adv_double_desc{
+				font-size: 14px;line-height: 38px;color: #666666;
+			}
+			.alone{
+				line-height: 75px
+			}
+			table,table tr th, table tr td { border:1px solid #f9f9f9; }
+			table { border-collapse: collapse;margin-left: 100px; width: 1030px;}
+			td,th{
+				vertical-align: middle;
+				text-align: center;
+				padding: 15px 0;
+			}
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.PrivateInvestmentProductTermDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryProductTermCount" resultType="int">
+        SELECT COUNT(id) FROM gh_private_investment_product_term
+    </select>
+
+    <select id="queryProductTermList" parameterType="map" resultType="com.szq.store.entity.bo.PrivateInvestmentProductTermBO">
+        SELECT * FROM gh_private_investment_product_term WHERE 1=1 ORDER BY create_time
+        <!--<include refid="limit"/>-->
+    </select>
+
+    <select id="queryProductTermById" parameterType="int" resultType="com.szq.store.entity.bo.PrivateInvestmentProductTermBO">
+        SELECT * FROM gh_private_investment_product_term WHERE id = #{id}
+    </select>
+
+    <delete id="deleteProductTerm" parameterType="int">
+        DELETE FROM gh_private_investment_product_term WHERE id = #{id}
+    </delete>
+
+    <insert id="addProductTermBO" parameterType="String">
+        INSERT INTO gh_private_investment_product_term SET name = #{name} ,create_time = NOW()
+
+    </insert>
+
+    <update id="updateProductTermBO" parameterType="com.szq.store.entity.bo.PrivateInvestmentProductTermBO">
+        UPDATE gh_private_investment_product_term  SET name = #{name} WHERE id = #{id}
+    </update>
+</mapper>

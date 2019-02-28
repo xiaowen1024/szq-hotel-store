@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.PrivateClubDao">
+    <insert id="addPrivateClub" parameterType="com.szq.store.entity.bo.PrivateClubBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_private_club SET  image = #{image},createTime = NOW()
+        ,createUser = #{createUser},content=#{content}
+    </insert>
+    <update id="updatePrivateClub" parameterType="com.szq.store.entity.bo.PrivateClubBo">
+        update gh_private_club set image = #{image}
+        ,updateTime = now()
+        ,content=#{content} where id = #{id}
+    </update>
+    <select id="queryPrivateClub" parameterType="int" resultType="com.szq.store.entity.bo.PrivateClubBo">
+        select * from gh_private_club WHERE id=#{id}
+    </select>
+
+    <delete id="deletePrivateClub" parameterType="int">
+        delete from gh_private_club where id = #{id}
+    </delete>
+</mapper>

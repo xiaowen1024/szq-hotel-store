@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 【用户】 -->
+<mapper namespace="com.szq.store.dao.MembershipActivitesDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="getMembershipActivitesCount" parameterType="map" resultType="int">
+      SELECT COUNT(id) FROM gh_membership_activites
+    </select>
+
+    <select id="getMembershipActivitesList" resultType="com.szq.store.entity.bo.MembershipActivitesBo" parameterType="map">
+        SELECT * FROM gh_membership_activites WHERE 1 = 1 ORDER BY create_time DESC
+        <include refid="limit"/>
+    </select>
+
+    <select id="getMembershipActivitesDetails" resultType="com.szq.store.entity.bo.MembershipActivitesBo" parameterType="int">
+        SELECT * FROM gh_membership_activites WHERE id = #{id}
+    </select>
+    <select id="queryclubSystem" resultType="com.szq.store.entity.bo.ClubSystemBo">
+        SELECT * FROM gh_club_system
+    </select>
+</mapper>

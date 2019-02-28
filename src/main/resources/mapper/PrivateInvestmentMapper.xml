@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.PrivateInvestmentDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryPrivateInvestmentCount" resultType="int" parameterType="map">
+        SELECT COUNT(id) FROM gh_private_investment WHERE 1=1
+            <if test="investmentPoinId != null">
+                AND investment_poin_id = #{investmentPoinId}
+            </if>
+            <if test="productTermId != null">
+                AND product_term_id = #{productTermId}
+            </if>
+            <if test="riskLevelId != null">
+                AND risk_level_id = #{riskLevelId}
+            </if>
+            <if test="incomeTypeId != null">
+                AND income_type_id = #{incomeTypeId}
+            </if>
+    </select>
+
+    <select id="queryPrivateInvestmentList" parameterType="map" resultType="com.szq.store.entity.bo.PrivateInvestmentBO">
+        SELECT * FROM gh_private_investment WHERE 1=1
+        <if test="investmentPoinId != null">
+            AND investment_poin_id = #{investmentPoinId}
+        </if>
+        <if test="productTermId != null">
+            AND product_term_id = #{productTermId}
+        </if>
+        <if test="riskLevelId != null">
+            AND risk_level_id = #{riskLevelId}
+        </if>
+        <if test="incomeTypeId != null">
+            AND income_type_id = #{incomeTypeId}
+        </if>
+
+        <if test="sortType == 'createTime'">
+            ORDER BY create_time DESC
+        </if>
+        <if test="sortType == 'comparisonDatum'">
+            ORDER BY comparison_datum DESC
+        </if>
+        <if test="sortType == 'amountOfInvestment'">
+            ORDER BY amount_of_investment DESC
+        </if>
+
+        <include refid="limit"/>
+    </select>
+
+    <select id="queryPrivateInvestmentById" parameterType="int" resultType="com.szq.store.entity.bo.PrivateInvestmentBO">
+        SELECT * FROM gh_private_investment WHERE id = #{id}
+    </select>
+
+    <delete id="deletePrivateInvestment" parameterType="int">
+        DELETE FROM gh_private_investment WHERE id = #{id}
+    </delete>
+
+
+
+    <update id="setRecommendTime">
+        UPDATE gh_private_investment SET recommend_time = NOW();
+    </update>
+
+
+    <select id="queryPrivateInvestmentListByRecommendTime" resultType="com.szq.store.entity.bo.PrivateInvestmentBO">
+        SELECT
+                *
+            FROM
+                gh_private_investment
+            WHERE
+                1=1
+--                 and recommend_time IS NOT NULL
+            ORDER BY
+                recommend_time DESC
+            LIMIT 0,3
+    </select>
+
+</mapper>

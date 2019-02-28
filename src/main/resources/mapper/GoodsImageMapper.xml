@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.GoodsImageDao">
+
+    <insert id="addGoodsImg" parameterType="com.szq.store.entity.mallBo.GoodsImg"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into mall_goods_img SET  goods_id = #{goodsId},,create_time = NOW()
+        ,create_user = #{createUser},img_url=#{imgUrl}
+    </insert>
+    <update id="updateGoodsImg" parameterType="com.szq.store.entity.mallBo.GoodsImg">
+        update mall_goods_img set img_url = #{imgUrl}
+        ,update_time = now() where id = #{id}
+    </update>
+    <select id="queryGoodsImgInfoByid" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsImg">
+        select * from mall_goods_img where goods_id = #{id}
+    </select>
+    <select id="queryGoodImg" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsImg">
+        select * from mall_goods_img WHERE id=#{id}
+    </select>
+
+    <delete id="deleteGoodsImg" parameterType="int">
+        delete from mall_goods_img where id = #{id}
+    </delete>
+</mapper>

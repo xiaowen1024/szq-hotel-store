@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.PrivateInvestmentIncomeTypeDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryIncomeTypeCount" resultType="int">
+        SELECT COUNT(id) FROM gh_private_investment_income_type
+    </select>
+
+    <select id="queryIncomeTypeList" parameterType="map" resultType="com.szq.store.entity.bo.PrivateInvestmentIncomeTypeBO">
+        SELECT * FROM gh_private_investment_income_type WHERE 1=1 ORDER BY create_time
+        <!--<include refid="limit"/>-->
+    </select>
+
+    <select id="queryIncomeTypeById" parameterType="int" resultType="com.szq.store.entity.bo.PrivateInvestmentIncomeTypeBO">
+        SELECT * FROM gh_private_investment_income_type WHERE id = #{id}
+    </select>
+
+    <delete id="deleteIncomeType" parameterType="int">
+        DELETE FROM gh_private_investment_income_type WHERE id = #{id}
+    </delete>
+
+    <insert id="addIncomeTypeBO" parameterType="String">
+        INSERT INTO gh_private_investment_income_type SET name = #{name} ,create_time = NOW()
+
+    </insert>
+
+    <update id="updateIncomeTypeBO" parameterType="com.szq.store.entity.bo.PrivateInvestmentIncomeTypeBO">
+        UPDATE gh_private_investment_income_type  SET name = #{name} WHERE id = #{id}
+    </update>
+</mapper>

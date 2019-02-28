@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.OrderDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <insert id="" parameterType="com.szq.store.entity.mallBo.OrderBo">
+        INSERT INTO mall_order (user_id,sku,addressId,state,num,price,create_time)
+        VALUES (#{userId},#{sku},#{addressId},#{state},#{num},#{price},NOW());
+    </insert>
+
+    <select id="queryIdList" parameterType="int" resultType="Long" >
+        SELECT orderId FROM mall_order WHERE user_id =#{userId} GROUP BY orderId DESC
+    </select>
+    <select id="queryOrderList1" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT p.goods_id,m.*,g.name,g.introduce_img_url FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE m.user_id =#{userId} AND m.orderId=#{orderId}
+    </select>
+    <select id="queryOrderList2" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT p.goods_id,m.*,g.name,g.introduce_img_url FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE m.user_id =#{userId} AND m.orderId=#{orderId} AND m.state =1
+    </select>
+    <select id="queryOrderList3" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT p.goods_id,m.*,g.name,g.introduce_img_url FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE m.user_id =#{userId} AND m.orderId=#{orderId} AND m.state=2
+
+    </select>
+    <select id="queryOrderList4" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT p.goods_id,m.*,g.name,g.introduce_img_url FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE m.user_id =#{userId} AND m.orderId=#{orderId} AND  (g.`name` LIKE '%${query}%' OR m.`orderId`LIKE '%${query}%')
+
+    </select>
+
+    <insert id="addOrder" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into mall_order
+        ( user_id,sku,addressId,state,num,price,create_time,orderId,remake,count,dealStatus)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.userId},
+            #{item.sku},
+            #{item.addressId},
+            #{item.state},
+            #{item.num},
+            #{item.price},
+            #{item.createTime},
+            #{item.orderId},
+            #{item.remake},
+            #{item.count},
+            0
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteOrderbyId" parameterType="int">
+        DELETE FROM mall_order WHERE id = #{id}
+    </delete>
+
+    <update id="updateOrderbyId" parameterType="com.szq.store.entity.mallBo.OrderBo">
+        UPDATE mall_order SET update_time = NOW(), goods_id = #{goodsId},
+        address = #{address},state = #{state},num = #{num},price = #{price}
+        WHERE id = #{id} AND user_id = #{userId}
+    </update>
+
+    <select id="queryOrderList" parameterType="map" resultType="com.szq.store.entity.mallBo.OrderBo">
+        SELECT * FROM mall_order WHERE user_id = #{userId} AND state = #{state}
+        ORDER BY create_time
+        <include refid="limit" />
+
+    </select>
+
+    <select id="queryOrderById" parameterType="int" resultType="com.szq.store.entity.mallBo.OrderBo">
+        SELECT * FROM mall_order WHERE id = #{id}
+    </select>
+
+    <select id="queryOrderCount" parameterType="map" resultType="int">
+        SELECT count(id) FROM mall_order WHERE user_id = #{userId} AND state = #{state}
+    </select>
+
+
+    <update id="updateOrderStatebyId" parameterType="map">
+        UPDATE mall_order SET update_time = NOW(), state = #{state}
+        WHERE id = #{id} AND user_id = #{userId}
+    </update>
+
+    <update id="updateOrderstatus" parameterType="com.szq.store.entity.mallBo.OrderBo">
+        UPDATE mall_order SET create_time=#{createTime},state = #{state}
+        WHERE  orderId = #{orderId}
+    </update>
+
+    <select id="queryOrderListByOrderId"  resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT m.*,g.name FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE orderId=#{orderId}
+    </select>
+
+</mapper>

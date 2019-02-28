@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 【用户】 -->
+<mapper namespace="com.szq.store.dao.WechatUserInfoDAO">
+
+    <select id="getWechatUserCount" resultType="int" parameterType="string">
+        SELECT count(id) FROM gh_wechat_user_info WHERE open_id = #{openid}
+    </select>
+
+    <select id="getWechatUserInfo" resultType="com.szq.store.entity.bo.WechatUserInfo" parameterType="string">
+        SELECT * FROM gh_wechat_user_info WHERE open_id = #{openid}
+    </select>
+
+
+    <insert id="addWechatUserInfo" parameterType="com.szq.store.entity.bo.WechatUserInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gh_wechat_user_info (open_id,nick_name,sex,country,province,city,language,headImg_url,create_time)
+        VALUES (#{openId},#{nickname},#{sex},#{country},#{province},#{city},#{language},#{headImgUrl},NOW());
+    </insert>
+
+
+    <update id="updateWechatUserInfo" parameterType="com.szq.store.entity.bo.WechatUserInfo">
+        UPDATE gh_wechat_user_info SET nick_name = #{nickname},sex = #{sex},country = #{country},province = #{province},city = #{city},language = #{language},
+        headImg_url = #{headImgUrl}, update_time = NOW() WHERE open_id = #{openId}
+    </update>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 【用户】 -->
+<mapper namespace="com.szq.store.dao.BindingDao">
+
+    <insert id="addBinding" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gh_binding (user_id,private_consultant_id,crate_time,status,phone) VALUES (#{userId},#{privateConsultantId},NOW(),#{status},#{phone})
+    </insert>
+
+    <delete id="deleteBinding" parameterType="int">
+        DELETE FROM gh_binding WHERE id = #{id}
+    </delete>
+
+    <select id="getBindingList" parameterType="int" resultType="map">
+        SELECT
+            *
+        FROM
+            gh_binding bd
+        LEFT JOIN gh_private_consultant_details gpcd ON bd.private_consultant_id = gpcd.id
+        WHERE
+            user_id = #{userId} ORDER BY bd.crate_time
+    </select>
+    <select id="queryInfo" parameterType="int" resultType="int">
+        SELECT count(id) FROM  gh_binding WHERE user_id=#{id}
+            </select>
+</mapper>

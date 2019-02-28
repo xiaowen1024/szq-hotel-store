@@ -1,0 +1,183 @@
+.big_event{
+	/*background-image: url(/static/img/banner1back.png);*/
+}
+.wrapp{
+	height: 618px; width: 1024px;
+}
+
+.year{
+    float: left;
+    height: 100%;
+    width: 4.6%;
+    border-left: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+.year.dactive {
+    width: 52%;
+    border-left: 1px solid #e0e0e0;
+    height: 100%;
+    float: left;
+}
+.year.dhover{
+	border-left: 1px solid #000;
+}
+.dactive .dhead{
+    padding: 0px 7px;
+    -webkit-animation: fly .6s 1 both;
+    animation: fly .6s 1 both;
+    transition: all .7s cubic-bezier(.19, 1, .22, 1);
+        /*position: absolute;*/
+    /*top: 50px;*/
+    
+}
+.dhead{
+    /*top: 50px;*/
+       position: relative;
+	height: 618px;
+}
+@keyframes fly{
+
+0% {
+    opacity: 1;
+    font-size: 24px;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+0.1% {
+    opacity: 0;
+    font-size: 46px;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+}
+100% {
+    font-size: 46px;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+}
+
+.dtitle {
+    margin-top: 60px;
+    color: #141414;
+    font-size: 20px;
+    height: 24px;
+    line-height: 24px;
+    opacity: 0;
+	padding-left: 20px;
+}
+.dinfo {
+    opacity: 1;
+    left: 14px;
+	padding-left: 20px;
+    width: 78%;
+    margin-top: 40px;
+    line-height: 20px;
+    word-spacing: 1px;
+    font-size: 16px;
+    opacity: 0;
+}
+.dimg_wrapp{
+	width: 98%;
+	height: 260px;
+	opacity: 0;
+	position: absolute;
+	bottom: 100px;
+}
+.dimg{
+	width: 100%;
+	height: 100%;
+}
+.year.dactive .dhead h3{
+	font-size: 46px;
+	text-align: left;
+	color: black;
+}
+.year .dhead h3{
+	text-align: center;
+	padding-top: 20px;
+	color: #dedede;
+}
+.year.dhover .dhead h3{
+	color: black;
+}
+.yw{
+	opacity: 1;
+}
+@media screen and (min-width: 1400px) {
+	.wrapp{
+		height: 618px; width: 1200px;
+	}
+	.dimg_wrapp{
+		width: 96%;
+		height: 260px;
+		opacity: 0;
+		position: absolute;
+		bottom: 100px;
+	}
+}
+
+
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				vertical-align: bottom
+			}
+@font-face {
+  font-family: 'iconfont';  /* project id 754425 */
+  src: url('//at.alicdn.com/t/font_754425_n0kjvo1a8m.eot');
+  src: url('//at.alicdn.com/t/font_754425_n0kjvo1a8m.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_754425_n0kjvo1a8m.woff') format('woff'),
+  url('//at.alicdn.com/t/font_754425_n0kjvo1a8m.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_754425_n0kjvo1a8m.svg#iconfont') format('svg');
+}
+			.slideImageContainer {
+				position: relative;
+				height: 340px;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			
+			.slideImageLists {
+				position: absolute;
+				left: -1800px;
+				top: 40px;
+				width: 10000px;
+				height: 300px;
+				font-size: 0;
+			}
+			
+			.slideImageLists img {
+				width: 600px;
+				height: 300px;
+			}
+			
+			.slideLeftBtn,
+			.slideRightBtn {
+				position: absolute;
+				font-family: "iconfont";
+				font-size: 30px;
+				top: 5px;
+				color: #191f25;
+				opacity: 0.3;
+				cursor: pointer;
+				user-select: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+			}
+			
+			.slideLeftBtn:hover,
+			.slideRightBtn:hover {
+				opacity: 0.6;
+			}
+			
+			.slideLeftBtn {
+				right: 50px;
+			}
+			
+			.slideRightBtn {
+				right: 10px;
+			}

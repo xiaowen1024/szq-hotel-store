@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.GoodsTypeDao">
+
+    <insert id="addGoodType" parameterType="com.szq.store.entity.mallBo.GoodsBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into mall_goods_type SET  name = #{name},,create_time = NOW()
+        ,create_user = #{createUser}
+    </insert>
+    <update id="updateGoodType" parameterType="com.szq.store.entity.mallBo.GoodsBo">
+        update mall_goods_type set name = #{name}
+        ,update_time = now(), update_user = #{updateUser} where id = #{id}
+    </update>
+    <select id="queryGoodTypeByPid" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsBo">
+        select * from mall_goods_type where pid = #{id}
+    </select>
+    <select id="queryGoodTypeById" parameterType="int" resultType="com.szq.store.entity.bo.BigEventBo">
+        select * from mall_goods_type WHERE id=#{pid}
+    </select>
+
+    <delete id="deleteGoodType" parameterType="int">
+        delete from mall_goods_type where id = #{id}
+    </delete>
+</mapper>

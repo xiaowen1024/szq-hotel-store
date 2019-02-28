@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.BigEventDao">
+    <!-- 添加-->
+    <insert id="addBigEvent" parameterType="com.szq.store.entity.bo.BigEventBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_guanghe_on_big_event SET  title = #{title},content = #{content},create_time = NOW(),
+         year = #{year},create_user = #{createUser},image=#{image}
+    </insert>
+    <update id="updateBigEvent" parameterType="com.szq.store.entity.bo.BigEventBo">
+        update gh_guanghe_on_big_event set title = #{title}, content = #{content}, image = #{image},
+        update_time = now(), update_user = #{updateUser} ,source = #{source}where id = #{id}
+    </update>
+    <select id="queryBigEvent" parameterType="int" resultType="com.szq.store.entity.bo.BigEventBo">
+        select * from gh_guanghe_on_big_event where id = #{id}
+    </select>
+    <select id="queryBigEventDetail" parameterType="int" resultType="com.szq.store.entity.bo.BigEventBo">
+        select * from gh_guanghe_on_big_event ORDER BY  year  DESC
+    </select>
+
+    <delete id="deleteBigEvent" parameterType="int">
+        delete from gh_guanghe_on_big_event where id = #{id}
+    </delete>
+</mapper>

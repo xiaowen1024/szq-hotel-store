@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.RecommendImageDao">
+    <insert id="addRecommendImage" parameterType="com.szq.store.entity.mallBo.RecommendImageBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into mall_recommend_image SET  image = #{image},createTime = NOW(),goods_type_id=#(goodsTypeId)
+        ,createUser = #{createUser}
+    </insert>
+    <update id="updateRecommendImage" parameterType="com.szq.store.entity.mallBo.RecommendImageBo">
+        update mall_recommend_image set image = #{image},goods_type_id=#(goodsTypeId)
+        ,updateTime = now() where id = #{id}
+    </update>
+    <select id="queryRecommendImage" parameterType="int" resultType="com.szq.store.entity.mallBo.RecommendImageBo">
+        select * from mall_recommend_image WHERE id=#{id}
+    </select>
+    <select id="queryRecommendImageInfo"  resultType="com.szq.store.entity.mallBo.RecommendImageBo">
+        select * from mall_recommend_image
+    </select>
+    <delete id="deleteRecommendImage" parameterType="int">
+        delete from mall_recommend_image where id = #{id}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.CoreTeamDao">
+    <!-- 添加-->
+    <insert id="addCoreTeam" parameterType="com.szq.store.entity.bo.CoreTeamBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_guanghe_on_core_team SET  title = #{title},source = #{source},create_time = NOW(),
+    core_team = #{coreTeam},create_user = #{createUser},image=#{image}
+    </insert>
+    <update id="updateCoreTeam" parameterType="com.szq.store.entity.bo.CoreTeamBo">
+        update gh_guanghe_on_core_team set title = #{title}, core_team = #{coreTeam}, image = #{image},
+        update_time = now(),update_user = #{updateUser} ,source = #{source} where id = #{id}
+    </update>
+    <select id="queryCoreTeam" parameterType="int" resultType="com.szq.store.entity.bo.CoreTeamBo">
+        select * from gh_guanghe_on_core_team where id = #{id}
+    </select>
+    <select id="queryHomeCoreTeam" parameterType="int" resultType="com.szq.store.entity.bo.CoreTeamBo">
+        select * from gh_guanghe_on_core_team
+    </select>
+
+    <delete id="deleteCoreTeam" parameterType="int">
+        delete from gh_guanghe_on_core_team where id = #{id}
+    </delete>
+    <select id="queryEmployee" parameterType="int" resultType="com.szq.store.entity.bo.EmployeeBo">
+        select * from gh_employee
+    </select>
+</mapper>

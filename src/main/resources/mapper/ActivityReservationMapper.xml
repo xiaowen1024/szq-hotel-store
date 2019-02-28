@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 【用户】 -->
+<mapper namespace="com.szq.store.dao.ActivityReservationDao">
+
+    <insert id="addActivityReservation" parameterType="com.szq.store.entity.bo.ActivityReservationBo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gh_activity_reservation (membership_activites_id,user_id,name,phone,corporate_name,company_position,person_num,create_time,status)
+        VALUES (#{membershipActivitesId},#{userId},#{name},#{phone},#{corporateName},#{companyPosition},#{personNum},NOW(),#{status});
+    </insert>
+
+</mapper>

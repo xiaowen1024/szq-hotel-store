@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.NewsInformationDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryNewsInformationCount" resultType="int">
+        SELECT COUNT(id) FROM gh_news_update_news_information
+    </select>
+
+    <select id="queryNewsInformationList" parameterType="map" resultType="com.szq.store.entity.bo.NewsInformationBO">
+        SELECT * FROM gh_news_update_news_information WHERE 1 = 1
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        ORDER BY create_time DESC
+        <include refid="limit"/>
+    </select>
+
+    <select id="queryNewsInformationById" parameterType="int" resultType="com.szq.store.entity.bo.NewsInformationBO">
+        SELECT * FROM gh_news_update_news_information WHERE id = #{newsId}
+    </select>
+
+    <delete id="deleteNewsInformation" parameterType="int">
+        DELETE FROM gh_news_update_news_information WHERE id = #{newsId}
+    </delete>
+
+    <insert id="addNewsInformationBO" parameterType="com.szq.store.entity.bo.NewsInformationBO">
+        INSERT INTO gh_news_update_news_information SET title = #{title},english_title = #{englishTitle}
+        img_url = #{imgUrl},source = #{source},create_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser}
+
+    </insert>
+
+    <update id="updateNewsInformationBO" parameterType="com.szq.store.entity.bo.NewsInformationBO">
+        UPDATE gh_news_update_news_information  SET title = #{title},english_title = #{englishTitle}
+        img_url = #{imgUrl},source = #{source},update_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser} WHERE id = #{id}
+    </update>
+</mapper>

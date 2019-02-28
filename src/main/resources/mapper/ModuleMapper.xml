@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.ModuleDao">
+    <insert id="addModule" parameterType="com.szq.store.entity.bo.ModuleBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_module SET  image = #{image},createTime = NOW(),title=#(title),engTitle=#{engTtile}
+        ,createUser = #{createUser},content=#{content}
+    </insert>
+    <update id="updateModule" parameterType="com.szq.store.entity.bo.ModuleBo">
+        update gh_module set image = #{image}
+        ,updateTime = now(),title=#(title),engTitle=#{engTtile}
+        ,content=#{content} where id = #{id}
+    </update>
+    <select id="queryModule" parameterType="int" resultType="com.szq.store.entity.bo.ModuleBo">
+        select * from gh_module WHERE id=#{id}
+    </select>
+
+    <delete id="deleteModule" parameterType="int">
+        delete from gh_module where id = #{id}
+    </delete>
+</mapper>

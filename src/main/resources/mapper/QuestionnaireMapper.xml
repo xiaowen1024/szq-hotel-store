@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.QuestionnaireDao">
+
+
+    <select id="getQuestionnaireCountByUserId" resultType="int">
+        SELECT COUNT(id) FROM gh_questionnaire
+    </select>
+
+    <insert id="addQuestionnaire" parameterType="com.szq.store.entity.bo.QuestionnaireBo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gh_questionnaire SET user_id = #{userId},create_time = NOW(),score=#{score},cognizance=#{cognizance},evaluation=#{evaluation},examen=#{examen};
+    </insert>
+
+    <select id="getQuestionnaireByUserId" parameterType="int" resultType="com.szq.store.entity.bo.QuestionnaireBo">
+        SELECT * FROM gh_questionnaire WHERE user_id = #{userId}
+    </select>
+
+    <update id="updateQuestionnaireBoByUserId" parameterType="com.szq.store.entity.bo.QuestionnaireBo">
+        UPDATE gh_questionnaire SET update_time = NOW()
+        <if test="score != null">
+            , score = #{score}
+        </if>
+        <if test="cognizance != null">
+            , cognizance = #{cognizance}
+        </if>
+        <if test="score != null">
+            , evaluation = #{evaluation}
+        </if>
+        <if test="examen != null">
+            , examen = #{examen}
+        </if>
+        WHERE user_id = #{userId}
+
+    </update>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.PrivateInvestmentRiskLevelDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryRiskLevelCount" resultType="int">
+        SELECT COUNT(id) FROM gh_private_investment_risk_level
+    </select>
+
+    <select id="queryRiskLevelList" parameterType="map" resultType="com.szq.store.entity.bo.PrivateInvestmentRiskLevelBO">
+        SELECT * FROM gh_private_investment_risk_level WHERE 1=1 ORDER BY create_time
+        <!--<include refid="limit"/>-->
+    </select>
+
+    <select id="queryRiskLevelById" parameterType="int" resultType="com.szq.store.entity.bo.PrivateInvestmentRiskLevelBO">
+        SELECT * FROM gh_private_investment_risk_level WHERE id = #{id}
+    </select>
+
+    <delete id="deleteRiskLevel" parameterType="int">
+        DELETE FROM gh_private_investment_risk_level WHERE id = #{id}
+    </delete>
+
+    <insert id="addRiskLevelBO" parameterType="String">
+        INSERT INTO gh_private_investment_risk_level SET name = #{name} ,create_time = NOW()
+
+    </insert>
+
+    <update id="updateRiskLevelBO" parameterType="com.szq.store.entity.bo.PrivateInvestmentRiskLevelBO">
+        UPDATE gh_private_investment_risk_level  SET name = #{name} WHERE id = #{id}
+    </update>
+</mapper>

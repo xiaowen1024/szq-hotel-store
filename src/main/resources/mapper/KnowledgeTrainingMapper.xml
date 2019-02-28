@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.KnowledgeTrainingDao">
+    <!-- 添加-->
+    <insert id="addknowledgeTraining" parameterType="com.szq.store.entity.bo.KnowledgeTrainingBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_knowledge_training SET createTime = NOW(),
+        createUser = #{createUser},image=#{image}
+    </insert>
+    <update id="updateknowledgeTraining" parameterType="com.szq.store.entity.bo.KnowledgeTrainingBo">
+        update gh_knowledge_training set image= #{image},
+        updateTime = now(), updateUser = #{updateUser} where id = #{id}
+    </update>
+    <select id="queryknowledgeTraining" parameterType="int" resultType="com.szq.store.entity.bo.BusinessSchoolDetailsBo">
+        select * from gh_knowledge_training  where id = #{id}
+    </select>
+
+    <delete id="deleteknowledgeTraining" parameterType="int">
+        delete  from gh_knowledge_training where id = #{id}
+    </delete>
+    <select id="queryknowledgeTrainingDetail"  resultType="com.szq.store.entity.bo.KnowledgeTrainingBo">
+        select * from gh_knowledge_training
+    </select>
+</mapper>

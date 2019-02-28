@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.ExpertIectureHallDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryExpertIectureHallCount" resultType="int">
+        SELECT COUNT(id) FROM gh_expert_iecture_hall
+    </select>
+
+    <select id="queryExpertIectureHallList" parameterType="map" resultType="com.szq.store.entity.bo.ExpertIectureHallBo">
+        SELECT * FROM gh_expert_iecture_hall WHERE 1 = 1
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        ORDER BY create_time DESC
+        <include refid="limit"/>
+    </select>
+
+    <select id="queryExpertIectureHallById" parameterType="int" resultType="com.szq.store.entity.bo.ExpertIectureHallBo">
+        SELECT * FROM gh_expert_iecture_hall WHERE id = #{newsId}
+    </select>
+
+    <delete id="deleteExpertIectureHall" parameterType="int">
+        DELETE FROM gh_expert_iecture_hall WHERE id = #{newsId}
+    </delete>
+
+    <insert id="addExpertIectureHall" parameterType="com.szq.store.entity.bo.ExpertIectureHallBo">
+        INSERT INTO gh_expert_iecture_hall SET title = #{title},english_title = #{englishTitle}
+        img_url = #{imgUrl},source = #{source},create_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser}
+    </insert>
+
+    <update id="updateExpertIectureHall" parameterType="com.szq.store.entity.bo.ExpertIectureHallBo">
+        UPDATE gh_expert_iecture_hall  SET title = #{title},english_title = #{englishTitle}
+        img_url = #{imgUrl},source = #{source},update_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser} WHERE id = #{id}
+    </update>
+</mapper>

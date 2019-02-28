@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.InfoDao">
+    <select id="queryCompanyIntroductionInfo"  resultType="com.szq.store.entity.bo.CompanyIntroductionBo">
+        select video,company_introduction from gh_guanghe_on_company_introduction limit 1
+    </select>
+
+    <select id="queryNewsInformationInfo"  resultType="com.szq.store.entity.bo.NewsInformationBO">
+    SELECT  * from gh_news_update_news_information order BY  create_time DESC limit 4
+    </select>
+
+    <select id="queryImageInfo"  resultType="com.szq.store.entity.bo.ImageBo">
+        SELECT * FROM gh_image
+    </select>
+
+    <select id="queryModuleInfo"  resultType="com.szq.store.entity.bo.ModuleBo">
+        SELECT * FROM gh_module
+    </select>
+
+    <select id="queryPrivateClub"  resultType="com.szq.store.entity.bo.PrivateClubBo">
+        SELECT * FROM gh_private_club
+     </select>
+    <select id="queryHomeGoodsBo"  resultType="com.szq.store.entity.bo.HomeGoodsBo">
+        SELECT * FROM gh_home_goods
+    </select>
+    <select id="queryHomeActivite"  resultType="com.szq.store.entity.bo.HomeActivitesBo">
+        SELECT * FROM gh_home_activites
+    </select>
+</mapper>

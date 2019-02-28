@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.BusinessSchoolDetailsDao">
+    <!-- 添加-->
+    <insert id="addHomePageDetail" parameterType="com.szq.store.entity.bo.BusinessSchoolDetailsBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_business_school_details SET  title = #{title},create_time = NOW(),
+        create_user = #{createUser},image_url=#{imageUrl},synopsis=#{synopsis}
+    </insert>
+    <update id="updateHomePageDetail" parameterType="com.szq.store.entity.bo.BusinessSchoolDetailsBo">
+        update gh_business_school_details set title = #{title}, synopsis=#{synopsis}, image_url = #{imageUrl},
+        update_time = now(), update_user = #{updateUser} where id = #{id}
+    </update>
+    <select id="queryHomePageDetail" parameterType="int" resultType="com.szq.store.entity.bo.BusinessSchoolDetailsBo">
+        select * from gh_business_school_details  where id = #{id}
+    </select>
+
+    <delete id="deleteHomePageDetail" parameterType="int">
+        delete  from gh_business_school_details where id = #{id}
+    </delete>
+    <select id="queryHomePageDetail1"  resultType="com.szq.store.entity.bo.BusinessSchoolDetailsBo">
+    select * from gh_business_school_details WHERE status=1
+</select>
+    <select id="queryHomePageDetail2"  resultType="com.szq.store.entity.bo.BusinessSchoolDetailsBo">
+        select * from gh_business_school_details WHERE status=2
+    </select>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.ShoppingCarDao">
+
+    <insert id="addShoppingCar" parameterType="com.szq.store.entity.mallBo.ShoppingCarBo">
+        INSERT INTO mall_shopping_car (user_id,sku,number,create_time)
+        VALUES (#{userId},#{sku},#{number},NOW());
+    </insert>
+
+    <delete id="deleteShoppingCarbyId" parameterType="int">
+        DELETE FROM mall_shopping_car WHERE id = #{id}
+    </delete>
+
+    <update id="updateShopping" parameterType="com.szq.store.entity.mallBo.ShoppingCarBo">
+        UPDATE mall_shopping_car SET number = #{number}
+        WHERE user_id = #{userId} AND  sku=#{sku}
+    </update>
+    <update id="updateShoppingCarbyId" parameterType="com.szq.store.entity.mallBo.ShoppingCarBo">
+        UPDATE mall_shopping_car SET number = #{number}
+        WHERE carId = #{carId}
+    </update>
+
+    <select id="queryShoppingCarById" parameterType="int" resultType="com.szq.store.entity.mallBo.ShoppingCarBo">
+        SELECT * FROM mall_shopping_car WHERE carId = #{id}
+    </select>
+
+    <delete id="deleteShoppingCarByIds" parameterType="list">
+        DELETE FROM mall_shopping_car WHERE id IN
+        <foreach collection="list" item="index" index="no" open="(" separator="," close=")">
+            #{index}
+        </foreach>
+    </delete>
+
+    <select id="queryInvalidGoodsList" parameterType="map" resultType="map">
+        SELECT
+        msc.id
+            FROM
+                mall_shopping_car msc
+            LEFT JOIN mall_goods mg ON msc.goods_id = mg.id
+            WHERE
+                msc.user_id = #{userId}
+            AND mg.state = #{state}
+    </select>
+    <select id="queryShoppingCar" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+         SELECT p.*,g.*,m.number,m.carId
+        FROM
+        mall_goods g
+         left JOIN
+         mall_price_and_specification p ON g.id = p.goods_id
+        LEFT JOIN
+        mall_shopping_car m  ON m.sku=p.sku
+        WHERE
+         m.user_id=#{id}   </select>
+    <delete id="deleteInfoList" parameterType="Integer">
+        delete from mall_shopping_car where
+        <foreach item="intTemp" collection="array" open="carId in ("
+                 separator="," close=")">
+            #{intTemp}
+        </foreach>
+    </delete>
+    <delete id="deleteAll" parameterType="int">
+        DELETE FROM mall_shopping_car WHERE user_id=#{userId}
+    </delete>
+    <select id="queryFollow" parameterType="int" resultType="int">
+        SELECT sku FROM mall_goods_follow WHERE user_id=#{userId}
+    </select>
+    <insert id="AddFollowList" parameterType="Map">
+            insert into mall_goods_follow (user_id,sku) values
+            <foreach collection="list" item="item" separator=",">
+                (#{userId},#{item})
+            </foreach>
+    </insert>
+
+    <select id="queryShopping" parameterType="com.szq.store.entity.mallBo.ShoppingCarBo" resultType="com.szq.store.entity.mallBo.ShoppingCarBo">
+        SELECT * FROM mall_shopping_car WHERE user_id = #{userId} AND sku=#{sku}
+    </select>
+    <select id="querycount" parameterType="int" resultType="int">
+        SELECT count(sku) FROM mall_shopping_car WHERE user_id = #{userId}
+    </select>
+
+
+
+</mapper>

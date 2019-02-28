@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.CompanyIntroductionDao">
+    <!-- 添加-->
+    <insert id="addCompanyIntroduction" parameterType="com.szq.store.entity.bo.CompanyIntroductionBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_guanghe_on_company_introduction SET  title = #{title},source = #{source},create_time = NOW(),
+    company_introduction = #{companyIntroduction},create_user = #{createUser},image=#{image}
+    </insert>
+    <update id="updateCompanyIntroduction" parameterType="com.szq.store.entity.bo.CompanyIntroductionBo">
+        update gh_guanghe_on_company_introduction set title = #{title}, company_introduction = #{companyIntroduction}, image = #{image},wap_image=#{wapImage}
+        ,update_time = now(),update_user = #{updateUser} ,source = #{source} where id = #{id}
+    </update>
+    <select id="queryCompanyIntroduction" parameterType="int" resultType="com.szq.store.entity.bo.CompanyIntroductionBo">
+        select * from gh_guanghe_on_company_introduction where id = #{id}
+    </select>
+
+    <delete id="deleteCompanyIntroduction" parameterType="int">
+        delete from gh_guanghe_on_company_introduction where id = #{id}
+    </delete>
+    <select id="queryCompanyIntroductionDetail" parameterType="int" resultType="com.szq.store.entity.bo.CompanyIntroductionBo">
+        select * from gh_guanghe_on_company_introduction limit 1
+    </select>
+</mapper>

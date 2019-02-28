@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.MessageRecordDao">
+
+    <!-- 添加发送验证码记录 -->
+    <insert id="addMessageRecord" parameterType="com.szq.store.entity.bo.MessageRecordBO"
+            useGeneratedKeys="true" keyProperty="message_id">
+        INSERT INTO gh_message_record SET type = #{type}, content = #{content}, user_id = #{userId},
+        mobile = #{mobile}, status = #{status}, send_time = NOW()
+    </insert>
+
+</mapper>

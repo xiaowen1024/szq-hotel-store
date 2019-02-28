@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.ImageDao">
+    <insert id="addImage" parameterType="com.szq.store.entity.bo.ImageBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_image SET  image = #{image},createTime = NOW()
+        ,createUser = #{createUser}
+    </insert>
+    <update id="updateImage" parameterType="com.szq.store.entity.bo.ImageBo">
+        update gh_image set image = #{image}
+        ,updateTime = now() where id = #{id}
+    </update>
+    <select id="queryImage" parameterType="int" resultType="com.szq.store.entity.bo.ImageBo">
+        select * from gh_image WHERE id=#{id}
+    </select>
+
+    <delete id="deleteImage" parameterType="int">
+        delete from gh_image where id = #{id}
+    </delete>
+</mapper>

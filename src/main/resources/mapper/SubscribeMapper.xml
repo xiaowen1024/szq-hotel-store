@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 【用户】 -->
+<mapper namespace="com.szq.store.dao.SubscribeDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="getSubscribeCount" resultType="int" parameterType="map">
+        SELECT count(gs.id) FROM gh_subscribe gs LEFT JOIN gh_private_investment gpi ON gs.private_investment_id = gpi.id
+        WHERE gs.user_id = #{userId}
+        <if test="status != null">
+            AND gs.status=#{status}
+        </if>
+        <if test="productType != null">
+            AND gpi.productType=#{productType}
+        </if>
+    </select>
+<select id="accountInfo" parameterType="int" resultType="com.szq.store.entity.mallBo.AccountBo" >
+      SELECT * FROM
+      mall_account
+       WHERE  user_id=#{id}
+        </select>
+    <select id="getSubscribeList" resultType="com.szq.store.entity.bo.productResponseBo" parameterType="map">
+        SELECT
+        gpi.*,gs.confirmation_of_amount,gs.confirmation_of_count,gs.status,gs.nowNet,gs.payTime,gs.aveNet,gs.payCount,gs.Maturity,gs.id
+        FROM
+        gh_subscribe gs LEFT JOIN gh_private_investment gpi ON gs.private_investment_id = gpi.id
+        WHERE
+        gs.user_id = #{userId}
+        <if test="productType != null">
+            AND gpi.productType=#{productType}
+        </if>
+        <if test="status != null">
+            AND gs.status=#{status}
+        </if>
+        ORDER BY gs.create_time DESC
+        <include refid="limit"/>
+    </select>
+
+
+    <insert id="addSubscribe" parameterType="com.szq.store.entity.bo.SubscribeBo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gh_subscribe (private_investment_id,user_id,name,phone,create_time,confirmation_of_amount,status)
+        VALUES (#{privateInvestmentId},#{userId},#{name},#{phone},NOW(),#{amountOfInvestment},#{status});
+    </insert>
+
+</mapper>

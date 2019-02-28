@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.ReceivingAdressDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <insert id="addReceivingAdress" parameterType="com.szq.store.entity.mallBo.ReceivingAdressBo">
+        INSERT INTO mall_receiving_address (name,address,address_details,phone,fixed_telephone,postal_code,
+        address_alias,create_time,user_id)
+        VALUES (#{name},#{address},#{addressDetails},#{phone},#{fixedTelephone},#{postalCode},#{addressAlias},NOW(),#{userId});
+    </insert>
+    <insert id="addReceivingAdresswap" parameterType="com.szq.store.entity.mallBo.ReceivingAdressBo">
+        INSERT INTO mall_receiving_address (name,address,address_details,phone,fixed_telephone,postal_code,
+        address_alias,create_time,user_id,default_address)
+        VALUES (#{name},#{address},#{addressDetails},#{phone},#{fixedTelephone},#{postalCode},#{addressAlias},NOW(),#{userId},#{defaultAddress});
+    </insert>
+
+    <delete id="deleteReceivingAdressbyId" parameterType="int">
+        DELETE FROM mall_receiving_address WHERE id = #{id}
+    </delete>
+
+    <update id="updateReceivingAdressbyId" parameterType="com.szq.store.entity.mallBo.ReceivingAdressBo">
+        UPDATE mall_receiving_address SET name = #{name}, address_details = #{addressDetails},
+        phone = #{phone},fixed_telephone = #{fixedTelephone},postal_code = #{postalCode},address_alias = #{addressAlias}
+        WHERE id = #{id} AND user_id = #{userId}
+    </update>
+
+    <select id="queryReceivingAdressList" parameterType="map" resultType="com.szq.store.entity.mallBo.ReceivingAdressBo">
+        SELECT * FROM mall_receiving_address WHERE user_id = #{userId}
+        ORDER BY default_address DESC
+    </select>
+
+    <select id="queryReceivingAdressById" parameterType="int" resultType="com.szq.store.entity.mallBo.ReceivingAdressBo">
+        SELECT * FROM mall_receiving_address WHERE id = #{id}
+    </select>
+
+    <select id="queryReceivingAdressCount" parameterType="map" resultType="int">
+        SELECT count(id) FROM mall_receiving_address WHERE user_id = #{userId}
+    </select>
+
+    <update id="updateReceivingAdressbyUserId" parameterType="int">
+        UPDATE mall_receiving_address SET default_address = 0 WHERE  user_id = #{userId}
+    </update>
+
+    <update id="setDefaultAddressbyId" parameterType="int">
+        UPDATE mall_receiving_address SET default_address = 1 WHERE  id = #{addressId}
+    </update>
+
+
+    <select id="queryorderAddress" parameterType="map" resultType="com.szq.store.entity.mallBo.orderAddressBo">
+        SELECT a.address,o.orderId,a.`name`,a.phone,o.create_time FROM mall_receiving_address a LEFT JOIN mall_order o on o.addressId = a.id
+       WHERE  o.user_id = #{userId} AND
+      o.orderId=#{orderId}
+    </select>
+
+</mapper>

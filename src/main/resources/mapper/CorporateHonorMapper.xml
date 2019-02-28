@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.CorporateHonorDao">
+    <!-- 添加-->
+    <insert id="addCorporateHonor" parameterType="com.szq.store.entity.bo.CorporateHonorBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_guanghe_on_corporate_honor SET  title = #{title},create_time = NOW(),
+        create_user = #{createUser},image=#{image}
+    </insert>
+    <update id="updateCorporateHonor" parameterType="com.szq.store.entity.bo.CorporateHonorBo">
+        update gh_guanghe_on_corporate_honor set title = #{title},  image = #{image},
+        update_time = now(), update_user = #{updateUser} where id = #{id}
+    </update>
+    <select id="queryCorporateHonor" parameterType="int" resultType="com.szq.store.entity.bo.CorporateHonorBo">
+        select * from gh_guanghe_on_corporate_honor  where id = #{id}
+    </select>
+
+    <delete id="deleteCorporateHonor" parameterType="int">
+        delete  from gh_guanghe_on_corporate_honor where id = #{id}
+    </delete>
+    <select id="queryCorporateHonorDetail"  resultType="com.szq.store.entity.bo.CorporateHonorBo">
+        select * from gh_guanghe_on_corporate_honor
+    </select>
+</mapper>

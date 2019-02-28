@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.mallDao.GoodsDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryGoodsCount"  resultType="int">
+        select count(DISTINCT g.id) from mall_goods g LEFT join mall_price_and_specification p on g.id=p.goods_id WHERE 1=1
+        AND
+        g.leave_id = #{leaveId}
+        <if test="goodsTypeId!=null">
+            AND
+            g.goods_type_id =#{goodsTypeId}
+        </if>
+        <if test="brandId!=null">
+            AND
+            g.brand_id =#{brandId}
+        </if>
+        <if test="weightStatu==1">
+            AND  g.weight &lt; 1
+        </if>
+        <if test="weightStatu==2">
+            AND   g.weight &lt; 5 AND g.weight &gt;1
+        </if>
+        <if test="weightStatu==3">
+            AND  g.weight  &gt;5
+        </if>
+    </select>
+    <select id="queryGoods" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsBo">
+        SELECT * FROM mall_goods WHERE id = #{id}
+    </select>
+    <select id="queryGoodsbrandsDetailList" parameterType="int" resultType="com.szq.store.entity.mallBo.GoodsListBo">
+        select g.*,p.price,p.preferential_end_time ,p.preferential_price from mall_goods g join mall_price_and_specification p on g.id=p.goods_id WHERE g.brand_id=(SELECT brand_id FROM mall_goods WHERE id =#{id})
+        GROUP  BY  g.id limit 5
+    </select>
+    <delete id="deleteGoods" parameterType="int">
+        delete from mall_goods_type where id = #{id}
+    </delete>
+    <insert id="addGoods" parameterType="com.szq.store.entity.mallBo.GoodsBo">
+        INSERT INTO mall_goods  SET name = #{name},
+        price = #{price},stock = #{stock},goodsNo = #{goodsNo},
+        weight = #{weight},introduceImgUrl = #{introduceImgUrl},state = #{state},brandId = #{brandId},goodsTypeId = #{goodsTypeId}
+        ,followCount = #{followCount}, saleCount = #{saleCount},create_time = NOW(),
+        create_news_user = #{createNewsUser}
+
+    </insert>
+    <update id="updateGoods" parameterType="com.szq.store.entity.mallBo.GoodsBo">
+        UPDATE mall_goods  SET name = #{name},
+        price = #{price},stock = #{stock},goodsNo = #{goodsNo},update_time = NOW(),
+        weight = #{weight},introduceImgUrl = #{introduceImgUrl},state = #{state},brandId = #{brandId},goodsTypeId = #{goodsTypeId}
+        ,followCount = #{followCount}, saleCount = #{saleCount}WHERE id = #{id}
+    </update>
+
+    <select id="queryGoodsInfoSort" parameterType="map" resultType="com.szq.store.entity.mallBo.GoodsListBo">
+        select g.*,p.price,p.sku,p.preferential_end_time,p.preferential_price from mall_goods g LEFT  JOIN mall_price_and_specification p on g.id=p.goods_id WHERE 1=1
+        AND
+        g.leave_id = #{leaveId}
+        <if test="goodsTypeId!=null">
+            AND
+            g.goods_type_id =#{goodsTypeId}
+        </if>
+        <if test="brandId!=null">
+            AND
+            g.brand_id =#{brandId}
+        </if>
+        <if test="weightStatu==1">
+            AND  g.weight &lt;1
+        </if>
+        <if test="weightStatu==2">
+            AND   g.weight &lt; 5 AND g.weight >=1
+        </if>
+        <if test="weightStatu==3">
+            AND  g.weight >=5
+        </if>
+        group by g.id
+        <if test="sortStatu==1">
+            ORDER BY p.price ASC
+        </if>
+        <if test="sortStatu==2">
+            ORDER BY p.price DESC
+        </if>
+        <if test="sortStatu==3">
+            ORDER  BY p.sale_count ASC
+        </if>
+        <if test="sortStatu==4">
+            ORDER  BY p.sale_count DESC
+        </if>
+        <if test="sortStatu==5">
+            ORDER BY g.follow_count ASC
+        </if>
+        <if test="sortStatu==6">
+            ORDER BY g.follow_count DESC
+        </if>
+        <if test="sortStatu==7">
+            ORDER BY g.create_time ASC
+        </if>
+        <if test="sortStatu==8">
+            ORDER BY g.create_time DESC
+        </if>
+        <include refid="limit"/>
+    </select>
+    <select id="queryGoodsdetail" parameterType="Int" resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+        SELECT
+        p.*,
+        g.*
+        FROM
+        mall_goods g
+        JOIN
+        mall_price_and_specification p ON g.id = p.goods_id
+        WHERE
+        g.id=#{id}
+    </select>
+    <select id="queryHomeGoodsList"  resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+        select g.*,p.price,p.sku,p.preferential_end_time ,p.preferential_price,s.img_url from mall_goods g
+        LEFT join mall_price_and_specification p on g.id=p.goods_id
+        LEFT JOIN mall_home_goods_img s ON s.goods_id= g.id
+        WHERE 1=1
+        AND (homeState=1  OR homeState =2)
+        ORDER BY s.sort DESC
+    </select>
+    <select id="queryOrderNews" parameterType="Integer" resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+        SELECT * from mall_goods g
+        LEFT JOIN mall_price_and_specification p ON   g.id=p.goods_id
+        WHERE
+        <foreach item="intTemp" collection="array" open="p.sku in ("
+                 separator="," close=")">
+            #{intTemp}
+        </foreach>
+    </select>
+
+    <select id="queryHomeGoodsList1"  resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+        select g.*,p.price,p.sku,p.preferential_end_time ,p.preferential_price,s.img_url from mall_goods g
+        LEFT join mall_price_and_specification p on g.id=p.goods_id
+        LEFT JOIN mall_home_goods_img s ON s.goods_id= g.id
+        WHERE 1=1
+        AND homeState=1
+        ORDER BY s.sort DESC
+    </select>
+    <select id="queryHomeGoodsList2"  resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
+        select g.*,p.price,p.sku,p.preferential_end_time ,p.preferential_price,s.img_url from mall_goods g
+        LEFT join mall_price_and_specification p on g.id=p.goods_id
+        LEFT JOIN mall_home_goods_img s ON s.goods_id= g.id
+        WHERE 1=1
+        AND homeState =2
+        ORDER BY s.sort DESC
+    </select>
+
+
+
+</mapper>

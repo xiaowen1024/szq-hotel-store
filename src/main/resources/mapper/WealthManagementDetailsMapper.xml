@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.WealthManagementDetailsDao">
+
+    <select id="queryWealthManagementDetails" resultType="com.szq.store.entity.bo.WealthManagementDetailsBO">
+        SELECT * FROM gh_wealth_management_details WHERE  status =0
+    </select>
+
+    <insert id="addWealthManagement" parameterType="com.szq.store.entity.bo.WealthManagementDetailsBO"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gh_wealth_management_details
+          (img_url,create_time)
+          VALUES (#{imgUrl},NOW())
+
+    </insert>
+    <select id="queryWealthManagementwapList" resultType="com.szq.store.entity.bo.WealthManagementDetailsBO">
+        SELECT * FROM gh_wealth_management_details WHERE status=2
+    </select>
+    <select id="queryWealthManagementwap" resultType="com.szq.store.entity.bo.WealthManagementDetailsBO">
+        SELECT * FROM gh_wealth_management_details WHERE  status=1
+    </select>
+    <update id="updateWealthManagementbyId" parameterType="com.szq.store.entity.bo.WealthManagementDetailsBO">
+        UPDATE gh_wealth_management_details  SET img_url = #{imgUrl},
+        update_time = NOW()
+    </update>
+</mapper>

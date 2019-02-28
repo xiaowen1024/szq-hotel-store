@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.BannerDao">
+    <select id="queryBannerInfo"  resultType="com.szq.store.entity.bo.BannerBo">
+        select * from gh_banner
+    </select>
+    <insert id="addBanner" parameterType="com.szq.store.entity.bo.BannerBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into gh_banner SET  image = #{image},createTime = NOW()
+        ,wapImage=#{wapImage},createUser = #{createUser}
+    </insert>
+    <update id="updateBanner" parameterType="com.szq.store.entity.bo.BannerBo">
+        update gh_banner set image = #{image}
+        ,updateTime = now(),wapImage=#{wapImage} where id = #{id}
+    </update>
+    <select id="queryBanner" parameterType="int" resultType="com.szq.store.entity.bo.BannerBo">
+        select * from gh_banner WHERE id=#{id}
+    </select>
+
+    <delete id="deleteBanner" parameterType="int">
+        delete from gh_banner where id = #{id}
+    </delete>
+</mapper>

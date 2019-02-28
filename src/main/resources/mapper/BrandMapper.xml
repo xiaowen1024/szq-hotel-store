@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szq.store.dao.mallDao.BrandDao">
+
+    <insert id="addBrand" parameterType="com.szq.store.entity.mallBo.BrandBo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into mall_brand SET  goods_type_id = #{goodsTypeId},,create_time = NOW()
+        ,create_user = #{createUser},name=#{name},produced=#{produced}
+    </insert>
+    <update id="updateBrand" parameterType="com.szq.store.entity.mallBo.BrandBo">
+        update mall_brand set name = #{name},produced=#{produced}
+        ,update_time = now() where id = #{id}
+    </update>
+    <select id="queryBrandInfo" parameterType="map" resultType="com.szq.store.entity.mallBo.BrandBo">
+        select * from mall_brand where 1=1
+        AND
+        leave_id=#{leaveId}
+        <if test="goodsTypeId!=null">
+            AND  goods_type_id =#{goodsTypeId}
+        </if>
+        group by name
+    </select>
+    <select id="queryBrand" parameterType="int" resultType="com.szq.store.entity.mallBo.BrandBo">
+        select * from mall_brand WHERE id=#{id}
+    </select>
+    <select id="queryBrandByGoodsId" parameterType="int" resultType="com.szq.store.entity.mallBo.BrandBo">
+        select b.* from  mall_brand b join  mall_goods g  on g.brand_id=b.id WHERE g.id = #{id}
+    </select>
+
+    <delete id="deleteBrand" parameterType="int">
+        delete from mall_brand where id = #{id}
+    </delete>
+    <select id="queryBrandOnclick" parameterType="map" resultType="com.szq.store.entity.mallBo.BrandBo">
+        select * from mall_brand where goods_type_id =#{id} and leave_id =#{pid}
+    </select>
+
+    <select id="queryBranddetail" parameterType="map" resultType="com.szq.store.entity.mallBo.BrandBo">
+        SELECT m.* FROM  mall_brand m
+         LEFT JOIN mall_goods g   ON m.id=g.brand_id
+         WHERE (g.`name` LIKE '%${query}%' OR m.`name`LIKE '%${query}%')
+         GROUP BY m.id
+    </select>
+
+</mapper>

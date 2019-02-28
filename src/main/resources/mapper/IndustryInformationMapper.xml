@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szq.store.dao.IndustryInformationDao">
+
+    <sql id="limit">
+        limit #{pageOffset}, #{pageSize}
+    </sql>
+
+    <select id="queryIndustryInformationCount" resultType="int">
+        SELECT COUNT(id) FROM gh_news_update_industry_information
+    </select>
+
+    <select id="queryIndustryInformationList" parameterType="map" resultType="com.szq.store.entity.bo.IndustryInformationBO">
+        SELECT * FROM gh_news_update_industry_information WHERE 1 = 1
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        ORDER BY create_time DESC
+        <include refid="limit"/>
+    </select>
+
+    <select id="queryIndustryInformationById" parameterType="int" resultType="com.szq.store.entity.bo.IndustryInformationBO">
+        SELECT * FROM gh_news_update_industry_information WHERE id = #{newsId}
+    </select>
+
+    <delete id="deleteIndustryInformation" parameterType="int">
+        DELETE FROM gh_news_update_industry_information WHERE id = #{newsId}
+    </delete>
+
+    <insert id="addIndustryInformationBO" parameterType="com.szq.store.entity.bo.IndustryInformationBO">
+        INSERT INTO gh_news_update_industry_information SET title = #{title},
+        english_title = #{englishTitle},img_url = #{imgUrl},source = #{source},create_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser}
+
+    </insert>
+
+    <update id="updateIndustryInformationBO" parameterType="com.szq.store.entity.bo.IndustryInformationBO">
+        UPDATE gh_news_update_industry_information  SET title = #{title},
+        english_title = #{englishTitle},img_url = #{imgUrl},source = #{source},update_time = NOW(),
+        content = #{content},create_news_user = #{createNewsUser} WHERE id = #{id}
+    </update>
+</mapper>
