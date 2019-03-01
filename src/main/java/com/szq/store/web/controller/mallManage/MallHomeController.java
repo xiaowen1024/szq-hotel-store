@@ -132,4 +132,23 @@ public class MallHomeController extends BaseCotroller {
         String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.success(result));
         safeTextPrint(response, json);
     }
+    @RequestMapping("/wapinfogoods")
+    public void querywapgoods (HttpServletResponse response,HttpServletRequest request,Integer pageNo, Integer pageSize){
+        //商品加上分页
+        // 参数：当前页和页面容量
+        QueryInfo queryInfo = getQueryInfo(pageNo, pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (queryInfo != null) {
+            map.put("pageOffset", queryInfo.getPageOffset());
+            map.put("pageSize", queryInfo.getPageSize());
+        }
+        List<GoodsDetailBo> goods= goodsService.queryHomeGoodsList1(map);
+        int goodsCount=goodsService.queryHomeGoodsList1count();
+        JSONObject result = new JSONObject();
+        result.put("goods",goods);
+        result.put("goodsCount",goodsCount);
+        result.put("Url","https://" + SystemConfig.getString("image_bucketName")+".oss-cn-beijing.aliyuncs.com/");
+        String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.success(result));
+        safeTextPrint(response, json);
+    }
 }
