@@ -39,16 +39,19 @@ public class QueryGoodsListController extends BaseCotroller {
     }
     @RequestMapping("/detailList")//列表页
     public void  sort(HttpServletResponse response,Integer pageNo, Integer pageSize,QueryGoodsResponsBo goodsResponsBo){
+
+        if (goodsResponsBo.getQuery()==null){
+            String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.failure("0000001"));
+            safeTextPrint(response, json);
+        }
+
         QueryInfo queryInfo = getQueryInfo(pageNo,pageSize);
         Map<String, Object> map = new HashMap<String, Object>();
         if(queryInfo != null){
             map.put("pageOffset", queryInfo.getPageOffset());
             map.put("pageSize", queryInfo.getPageSize());
         }
-        if (goodsResponsBo.getQuery()==null){
-            String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.failure("0000001"));
-            safeTextPrint(response, json);
-        }
+
         map.put("query",goodsResponsBo.getQuery());
         if (goodsResponsBo.getBrandId() != null ) {
             map.put("brandId",goodsResponsBo.getBrandId());

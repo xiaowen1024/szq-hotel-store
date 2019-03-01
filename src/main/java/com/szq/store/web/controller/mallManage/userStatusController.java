@@ -41,11 +41,11 @@ public class userStatusController extends BaseCotroller {
         }
         UserBO us = loginService.selectuserInfo(userBO.getId());
         us.setPassword("");
-        QuestionnaireBo questionnaireBo = questionnaireService.getQuestionnaireByUserId(userBO.getId());
-        int count = bindingService.queryInfo(userBO.getId());
+    //    QuestionnaireBo questionnaireBo = questionnaireService.getQuestionnaireByUserId(userBO.getId());
+        //int count = bindingService.queryInfo(userBO.getId());
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("questionnaireBo",questionnaireBo);
-        resultMap.put("count",count);
+   //     resultMap.put("questionnaireBo",questionnaireBo);
+    //    resultMap.put("count",count);
         resultMap.put("userBo",us);
         String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.success(resultMap));
 

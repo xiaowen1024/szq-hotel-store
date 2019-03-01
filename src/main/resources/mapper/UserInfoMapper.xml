@@ -3,31 +3,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.szq.store.dao.UserDAO">
 
-    <!-- 根据手机号查找用户 -->
-    <select id="queryUserInfoByMobile" parameterType="com.szq.store.entity.bo.UserBO" resultType="com.szq.store.entity.bo.UserBO">
-
-        SELECT id,username,name,nickname,birthday,phone_number,email,gender,
+    <!-- 根据手机号查找用户      SELECT id,username,name,nickname,birthday,phone_number,email,gender,
         wechat,sina_weibo,twiter,facebook,linkedin,head_portrait,country,financial_manager_number,password
         FROM gh_user WHERE phone_number = #{phoneNumber}
+            TODO  已改
+ -->
+    <select id="queryUserInfoByMobile" parameterType="com.szq.store.entity.bo.UserBO" resultType="com.szq.store.entity.bo.UserBO">
+
+        SELECT *
+        FROM hm_user WHERE phone_number = #{phoneNumber}
     </select>
 
-    <!-- 根据手机号查找用户数量 -->
+    <!-- 根据手机号查找用户数量   SELECT count(id) FROM gh_user WHERE phone_number = #{phoneNumber} TODO 改过-->
     <select id="selectCountByMobileCode" parameterType="com.szq.store.entity.bo.UserBO" resultType="int">
-        SELECT count(id) FROM gh_user WHERE phone_number = #{phoneNumber}
+        SELECT count(id) FROM hm_user WHERE phone_number = #{phoneNumber}
     </select>
 
-    <!-- 用户注册 -->
-    <insert id="register" parameterType="com.szq.store.entity.bo.UserBO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO gh_user SET phone_number = #{phoneNumber}, password = #{password}, create_time = NOW(),head_portrait=#{headPortrait}
+    <!-- 用户注册   INSERT INTO gh_user SET phone_number = #{phoneNumber}, password = #{password}, create_time = NOW(),head_portrait=#{headPortrait}
         <if test="financialManagerNumber != '' ">
             ,financial_manager_number = #{financialManagerNumber}
-        </if>
-
+        </if>  FIXME 已改
+   -->
+    <insert id="register" parameterType="com.szq.store.entity.bo.UserBO" useGeneratedKeys="true" keyProperty="id">
+   INSERT INTO hm_user  SET name = #{name},
+        birthday = #{birthday},phone_number = #{phoneNumber},address = #{address},gender = #{gender},credential_no=#{credentialNo}
+        ,certificate_id=#{certificateId} ,password=#{password}
     </insert>
 
-    <!-- 根据手机号码修改用户密码 -->
+    <!-- 根据手机号码修改用户密码   FIXME  已改-->
     <update id="updatePasswordByMobileCode" parameterType="com.szq.store.entity.bo.UserBO">
-        UPDATE gh_user SET password = #{password}, modify_time = NOW() WHERE id = #{id} AND phone_number = #{phoneNumber}
+        UPDATE hm_user SET password = #{password}, modify_time = NOW()  WHERE id = #{id}  AND  phone_number = #{phoneNumber}
     </update>
 
 
@@ -39,8 +44,9 @@
     <update id="updateUserimage" parameterType="com.szq.store.entity.bo.UserBO">
         UPDATE gh_user SET head_portrait = #{headPortrait} WHERE id = #{id}
     </update>
+    <!--FIXME  已改-->
     <select id="selectuserInfo" resultType="com.szq.store.entity.bo.UserBO" parameterType="int">
-        SELECT * FROM gh_user WHERE id = #{id}
+        SELECT * FROM hm_user WHERE id = #{id}
     </select>
 
 </mapper>

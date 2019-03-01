@@ -24,7 +24,7 @@ public class RedissonHandler {
     private final String ip ="localhost";// "192.168.1.103";
 
 //    private final String password = "sunshibo1!";
-    private final String password = null;//"root";
+    private final String password = "root";
 
 
     /**

@@ -4,6 +4,7 @@ package com.szq.store.entity.bo;
 import com.szq.store.common.base.BaseModel;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -12,6 +13,9 @@ import java.util.Date;
  */
 
 public class UserBO extends BaseModel implements Serializable {
+	public static final Integer IS_MEMBER=1; //会员
+	public static final Integer IS_USER=0;//是用户
+	public static final Integer IS_NOT_USER= -1;//不是用户
 
 	private Integer id;		// ID
 	private String username;	// 用户名
@@ -20,11 +24,16 @@ public class UserBO extends BaseModel implements Serializable {
 	private String gender;		// 性别：1-男；2-女
 	private Date birthday;	// 生日
 	private String phoneNumber;	// 手机号
+	private Integer member; //会员
 	private String email;		// 电子邮箱
 	private String wechat;		// 微信号
 	private String sinaWeibo;		// 新浪微博号
 	private String twiter;		// twiter号
 	private String facebook;		// facbook 号
+	private String licensePlateNumber; //车牌号
+	private String  remark;          //备注
+	private String hobby;           //爱好
+	private String qq;              //QQ
 	private String linkedin;		// linkedin 号
 	private Date createTime;		// 创建时间
 	private Date modifyTime;		// 修改时间
@@ -33,17 +42,17 @@ public class UserBO extends BaseModel implements Serializable {
 	private String uuid ; // 用户登录的UUID
 	private String country ;//国家
 	private String password ;//密码
-	private String financialManagerNumber;//推荐理财师工号
-	public String getFinancialManagerNumber() {
-		return financialManagerNumber;
-	}
-
-	public void setFinancialManagerNumber(String financialManagerNumber) {
-		this.financialManagerNumber = financialManagerNumber;
-	}
-
+	private  String credentialNo;  //证件号码
+	private  String address;      //地址
+	private  Integer certificateId;  //证件类型
+	private BigDecimal member_card;//会员号
+	private String nation;//民族
 	public UserBO() {
-		// TODO Auto-generated constructor stub
+	}
+
+
+	public static Integer getIsMember() {
+		return IS_MEMBER;
 	}
 
 	public Integer getId() {
@@ -102,6 +111,14 @@ public class UserBO extends BaseModel implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public Integer getMember() {
+		return member;
+	}
+
+	public void setMember(Integer member) {
+		this.member = member;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -140,6 +157,38 @@ public class UserBO extends BaseModel implements Serializable {
 
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
+	}
+
+	public String getLicensePlateNumber() {
+		return licensePlateNumber;
+	}
+
+	public void setLicensePlateNumber(String licensePlateNumber) {
+		this.licensePlateNumber = licensePlateNumber;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getHobby() {
+		return hobby;
+	}
+
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 
 	public String getLinkedin() {
@@ -204,5 +253,45 @@ public class UserBO extends BaseModel implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getCredentialNo() {
+		return credentialNo;
+	}
+
+	public void setCredentialNo(String credentialNo) {
+		this.credentialNo = credentialNo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Integer getCertificateId() {
+		return certificateId;
+	}
+
+	public void setCertificateId(Integer certificateId) {
+		this.certificateId = certificateId;
+	}
+
+	public BigDecimal getMember_card() {
+		return member_card;
+	}
+
+	public void setMember_card(BigDecimal member_card) {
+		this.member_card = member_card;
+	}
+
+	public String getNation() {
+		return nation;
+	}
+
+	public void setNation(String nation) {
+		this.nation = nation;
 	}
 }

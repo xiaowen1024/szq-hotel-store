@@ -41,6 +41,7 @@ public class HomeController extends BaseCotroller {
             String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.failure("0000001"));
             safeTextPrint(response, json);
         }
+
         List<CompanyIntroductionBo> companyIntroductionBo =infoService.queryCompanyIntroductionInfo();
         if (companyIntroductionBo==null){
             String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.failure("0000001"));

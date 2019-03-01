@@ -29,7 +29,8 @@ import java.util.Map;
  * Created by yxw on 2018/9/8.
  */
 @Controller
-@RequestMapping("myintegraTransactionController")
+//@RequestMapping("myintegraTransactionController")
+//FIXME  等待后续添加模块
 public class MyIntegraTransactionController extends  BrandController {
     @Resource
     private IntegralTransactionService integralTransactionService;
@@ -95,6 +96,7 @@ public class MyIntegraTransactionController extends  BrandController {
         safeTextPrint(response, json);
 
     }
+
     @RequestMapping(value = "/uploadImage", produces = {"application/json;charset=UTF-8"})
     @RequiresPermissions(value = "material:upload")
     public void uploadMaterialLibrary(@RequestParam("myFile") MultipartFile file,

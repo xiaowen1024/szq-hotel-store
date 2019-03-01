@@ -29,14 +29,6 @@ public class SystemMessageController extends BaseCotroller {
     @RequestMapping("/list")
     public void list (HttpServletResponse response,HttpServletRequest request,Integer pageNo, Integer pageSize){
 
-        QueryInfo queryInfo = getQueryInfo(pageNo, pageSize);
-
-        Map<String, Object> m = new HashMap<String, Object>();
-        if(queryInfo != null){
-            m.put("pageOffset", queryInfo.getPageOffset());
-            m.put("pageSize", queryInfo.getPageSize());
-        }
-
         UserBO userBO = super.getLoginUser(request);
         /* 2. 验证账户状态 */
         if (userBO == null ) {
@@ -45,6 +37,12 @@ public class SystemMessageController extends BaseCotroller {
             return ;
         }
 
+        QueryInfo queryInfo = getQueryInfo(pageNo, pageSize);
+        Map<String, Object> m = new HashMap<String, Object>();
+        if(queryInfo != null){
+            m.put("pageOffset", queryInfo.getPageOffset());
+            m.put("pageSize", queryInfo.getPageSize());
+        }
         m.put("userId",userBO.getId());
 
         Map<String,Object> map = new HashMap<String, Object>();
@@ -54,7 +52,6 @@ public class SystemMessageController extends BaseCotroller {
         map.put("time",System.currentTimeMillis());
         String json = JsonUtils.getJsonString4JavaPOJO(ResultDTOBuilder.success(map));
         safeTextPrint(response, json);
-
 
     }
 
