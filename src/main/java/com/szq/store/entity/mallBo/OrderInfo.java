@@ -23,6 +23,25 @@ public class OrderInfo {
     private  String introduceImgUrl;
     private Integer goodsId;
 
+    private String createTimeStr;
+    private  String updateTimeStr;
+
+    public String getCreateTimeStr() {
+        return createTimeStr;
+    }
+
+    public void setCreateTimeStr(String createTimeStr) {
+        this.createTimeStr = createTimeStr;
+    }
+
+    public String getUpdateTimeStr() {
+        return updateTimeStr;
+    }
+
+    public void setUpdateTimeStr(String updateTimeStr) {
+        this.updateTimeStr = updateTimeStr;
+    }
+
     public Integer getGoodsId() {
         return goodsId;
     }

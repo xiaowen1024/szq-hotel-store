@@ -34,6 +34,31 @@
         WHERE m.user_id =#{userId} AND m.orderId=#{orderId} AND m.state=2
 
     </select>
+    <!--订单列表 -->
+    <select id="queryOrderMain" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT p.goods_id,m.*,g.name,g.introduce_img_url FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE m.user_id =#{userId} AND m.orderId=#{orderId}
+        <if test="state!=null">
+            AND m.state=#{state}
+        </if>
+        <include refid="limit"/>
+    </select>
+    <!--订单数量-->
+    <select id="queryOrderMainCount" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
+        SELECT count(1) FROM mall_order m
+        LEFT JOIN mall_price_and_specification p ON p.sku = m.sku
+        LEFT JOIN mall_goods g ON g.id = p.goods_id
+        WHERE m.user_id =#{userId} AND m.orderId=#{orderId}
+        <if test="state!=null">
+            AND m.state=#{state}
+        </if>
+    </select>
+
+
+
+
     <select id="queryOrderList4" parameterType="com.szq.store.entity.mallBo.OrderInfo" resultType="com.szq.store.entity.mallBo.OrderInfo">
         SELECT p.goods_id,m.*,g.name,g.introduce_img_url FROM mall_order m
         LEFT JOIN mall_price_and_specification p ON p.sku = m.sku

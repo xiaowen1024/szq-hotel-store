@@ -73,6 +73,18 @@ public class OrderService {
     public List<OrderInfo> queryOrderList3(OrderInfo orderBo){
         return  orderDao.queryOrderList3(orderBo);
     }
+
+
+    //TODO  订单列表
+   public List<OrderInfo> queryOrderMain(Map<String, Object> map){
+       return  orderDao.queryOrderMain(map);
+    }
+    int queryOrderMainCount(Map<String, Object> map){
+        return  orderDao.queryOrderMainCount(map);
+    }
+
+
+
     public List<OrderInfo> queryOrderList4(OrderInfo orderBo){
         return  orderDao.queryOrderList4(orderBo);
     }

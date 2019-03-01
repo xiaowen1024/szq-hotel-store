@@ -31,6 +31,12 @@ public interface OrderDao {
     List<OrderInfo> queryOrderList2(OrderInfo orderBo);
     List<OrderInfo> queryOrderList3(OrderInfo orderBo);
     List<OrderInfo> queryOrderList4(OrderInfo orderBo);
+
+    //TODO  订单列表
+    List<OrderInfo> queryOrderMain(Map<String, Object> map);
+    int queryOrderMainCount(Map<String, Object> map);
+
+
     void  updateOrderstatus(OrderBo orderBo);
     public List<OrderInfo> queryOrderListByOrderId(Long id);
 }
