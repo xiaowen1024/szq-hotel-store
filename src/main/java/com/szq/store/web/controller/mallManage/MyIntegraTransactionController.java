@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by yxw on 2018/9/8.
  */
 @Controller
-//@RequestMapping("myintegraTransactionController")
+@RequestMapping("myintegraTransactionController")
 //FIXME  等待后续添加模块
 public class MyIntegraTransactionController extends  BrandController {
     @Resource

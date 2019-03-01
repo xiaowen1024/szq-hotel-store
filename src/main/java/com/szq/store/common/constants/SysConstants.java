@@ -38,7 +38,7 @@ public class SysConstants {
     /**
      * 登录用户
      */
-    public static final String CURRENT_LOGIN_USER = "_currentLoginUser";
+    public static final String CURRENT_LOGIN_USER = "currentLoginUser";
 
     public static final String CURRENT_LOGIN_CLIENT = "currentLoginClient";
 
