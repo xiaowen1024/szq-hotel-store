@@ -23,7 +23,11 @@ public interface GoodsDao {
     public  List<GoodsDetailBo> queryGoodsdetail(Integer id);
     public  List<GoodsListBo> queryGoodsbrandsDetailList(Integer id);
     public List<GoodsDetailBo> queryOrderNews(Integer[] intTemp);
-    public List<GoodsDetailBo> queryHomeGoodsList1();
+    //商品列表内容
+    List<GoodsDetailBo> queryHomeGoodsList1(Map<String, Object> map);
+    //商品数量
+    int queryHomeGoodsList1count();
+
     public List<GoodsDetailBo> queryHomeGoodsList2();
 }
 

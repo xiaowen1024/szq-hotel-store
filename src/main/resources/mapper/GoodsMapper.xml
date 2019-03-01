@@ -131,15 +131,29 @@
             #{intTemp}
         </foreach>
     </select>
-
+    <!--商品-->
     <select id="queryHomeGoodsList1"  resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
         select g.*,p.price,p.sku,p.preferential_end_time ,p.preferential_price,s.img_url from mall_goods g
         LEFT join mall_price_and_specification p on g.id=p.goods_id
         LEFT JOIN mall_home_goods_img s ON s.goods_id= g.id
         WHERE 1=1
-        AND homeState=1
+
+        ORDER BY s.sort DESC
+        <include refid="limit"/>
+    </select>
+
+    <select id="queryHomeGoodsList1count"  resultType="Integer">
+        select count(1) from mall_goods g
+        LEFT join mall_price_and_specification p on g.id=p.goods_id
+        LEFT JOIN mall_home_goods_img s ON s.goods_id= g.id
+        WHERE 1=1
+
         ORDER BY s.sort DESC
     </select>
+
+
+
+
     <select id="queryHomeGoodsList2"  resultType="com.szq.store.entity.mallBo.GoodsDetailBo">
         select g.*,p.price,p.sku,p.preferential_end_time ,p.preferential_price,s.img_url from mall_goods g
         LEFT join mall_price_and_specification p on g.id=p.goods_id

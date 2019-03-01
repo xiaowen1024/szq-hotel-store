@@ -4,6 +4,7 @@ import com.szq.store.entity.bo.UserBO;
 import com.szq.store.entity.dto.ResultDTOBuilder;
 import com.szq.store.entity.mallBo.*;
 import com.szq.store.pop.SystemConfig;
+import com.szq.store.query.QueryInfo;
 import com.szq.store.service.mallService.*;
 import com.szq.store.util.JsonUtils;
 import com.szq.store.web.controller.base.BaseCotroller;
@@ -16,7 +17,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yxw on 2018/8/7.
@@ -75,10 +78,25 @@ public class MallHomeController extends BaseCotroller {
         safeTextPrint(response, json);
     }
     @RequestMapping("/wapinfo")
-    public void querywap (HttpServletResponse response,HttpServletRequest request){
+    public void querywap (HttpServletResponse response,HttpServletRequest request,Integer pageNo, Integer pageSize){
         List<MallImageBo> mallImageBos=mallImageService.queryMallImageInfo();
         List<MallBannerBo> mallBannerBos =mallBannerServise.queryMallBannerInfo();
-        List<GoodsDetailBo> goods= goodsService.queryHomeGoodsList1();
+        //商品加上分页
+        // 参数：当前页和页面容量
+        QueryInfo queryInfo = getQueryInfo(pageNo, pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (queryInfo != null) {
+            map.put("pageOffset", queryInfo.getPageOffset());
+            map.put("pageSize", queryInfo.getPageSize());
+        }
+        List<GoodsDetailBo> goods= goodsService.queryHomeGoodsList1(map);
+
+        int goodsCount=goodsService.queryHomeGoodsList1count();
+
+
+
+
+
         List<GoodsDetailBo> goodscreate= goodsService.queryHomeGoodsList2();
         List<RecommendImageBo> recommendImageBos =recommendImageService.queryRecommendImageInfo();
         List<GoodTypeBo> goodTypeBos = goodsTypeService.queryGoodType();
@@ -106,6 +124,7 @@ public class MallHomeController extends BaseCotroller {
         result.put("banner", mallBannerBos);
         result.put("image",mallImageBos);
         result.put("goods",goods);
+        result.put("goodsCount",goodsCount);
         result.put("goodscreate",goodscreate);
         result.put("recommondImage",mallHomeBos);
         result.put("goodsType",goodTypeBos);

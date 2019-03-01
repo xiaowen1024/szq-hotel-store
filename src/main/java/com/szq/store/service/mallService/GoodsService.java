@@ -51,8 +51,12 @@ public class GoodsService {
         return  goodsDao.queryOrderNews(intTemp);
 
     }
-    public List<GoodsDetailBo> queryHomeGoodsList1(){
-        return  goodsDao.queryHomeGoodsList1();
+    public List<GoodsDetailBo> queryHomeGoodsList1(Map<String, Object> map){
+        return  goodsDao.queryHomeGoodsList1(map);
+    }
+    //商品数量
+    public int queryHomeGoodsList1count(){
+        return  goodsDao.queryHomeGoodsList1count();
     }
     public List<GoodsDetailBo> queryHomeGoodsList2(){
         return  goodsDao.queryHomeGoodsList2();
